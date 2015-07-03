@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [[ -z "$@" ]]; then
+    echo >&2 "You must supply an argument!"
+    exit 1
+fi
+
+find -type f -print0 2>/dev/null | xargs -0 grep -i $1 2>/dev/null | grep -i --color=auto $1
+

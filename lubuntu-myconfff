@@ -1,0 +1,14 @@
+- clean: ["~"]
+- link:
+    ~/.config/mpv:
+      create: true
+      path: config/mpv/
+
+    ~/.config/sublime-text-3:
+      create: true
+      path: config/sublime-text-3/
+
+    ~/.Xdefaults: Xdefaults
+    ~/.gvimrc: gvimrc
+    ~/.i3-config:
+    ~/.xmodmaprc: xmodmaprc

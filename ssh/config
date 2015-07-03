@@ -1,0 +1,18 @@
+Host *
+    ServerAliveInterval 300
+    ServerAliveCountMax 2
+
+Host valinhos
+    Hostname valinhos.ime.usp.br
+    User thiago
+    Port 60222
+
+Host miku
+    Hostname mikuchan.noip.me
+    User thiagoko
+    Port 22222
+
+Host m45t3r
+    Hostname m45t3r.noip.me
+    User m45t3r
+    Port 22222
