@@ -1,6 +1,5 @@
 - clean: ["~"]
 - link:
-    ~/.dotfiles: ''
     ~/.bashrc: bashrc
     ~/.profile: profile
     ~/.bash_aliases: bash_aliases
@@ -13,5 +12,6 @@
     ~/.gitignore: gitignore
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
-    ~/.vim: vim/
+    ~/.bin: bin
+    ~/.vim: vim
     ~/.ssh: ssh

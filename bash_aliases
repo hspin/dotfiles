@@ -362,9 +362,9 @@ if [ -f "$HOME/.bcrc" ] ; then
     export BC_ENV_ARGS=~/.bcrc
 fi
 
-if [ -f "$HOME/.xgs/me-local.sh" ] ; then
-    . "$HOME/.xgs/me-local.sh"
-fi
+# if [ -f "$HOME/.xgs/me-local.sh" ] ; then
+    # . "$HOME/.xgs/me-local.sh"
+# fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
