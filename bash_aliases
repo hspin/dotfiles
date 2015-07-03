@@ -1,4 +1,3 @@
-#!/bin/bash
 # A sane bash environment.
 
 # ----------------------------------------------------------------------
@@ -7,13 +6,14 @@
 
 case "$TERM" in
 xterm*|rxvt*)
-#My promt - Need both lines
     PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h: \[\e[36;1m\]\w\[\e[0m\]\n\$ '
     PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
     ;;
 *)
     ;;
 esac
+
+
 # Prompt for tmux
 case "$TERM" in
 screen-256color)
