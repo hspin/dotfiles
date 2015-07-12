@@ -75,8 +75,8 @@ if [ -e "$HOME/.bin" ] ; then
     PATH=$HOME/.bin:$PATH
 fi
 
-if [ -e "$HOME/.xgs/lbin" ] ; then
-    PATH=$HOME/.xgs/lbin:$PATH
+if [ -e "$HOME/.lbin-local" ] ; then
+    PATH=$HOME/.lbin-local:$PATH
 fi
 
 #export PATH=~/.dotfiles/bin:${PATH}
@@ -124,6 +124,7 @@ alias df="df -h"
 
 alias mecp="rsync -av --progress"
 #alias xclip="tr -d '\n' | xclip -selection primary"
+#alias xclip="xclip -selection c"
 alias xclip="echo 'ERROR=use cb instead!'"
 
 alias pss='ps faxu | grep -v grep | grep '
@@ -142,7 +143,6 @@ alias pwgen="pwgen 10"
 
 alias simpleserver="python -m SimpleHTTPServer 7070"
 alias ttc='tty-clock -c -t -C 3'
-#alias xclip="xclip -selection c"
 alias k="less"
 
 #tmuxinator shortcuts
@@ -306,6 +306,7 @@ cb() {
 # ------------------------------------------------
 # Copy contents of a file
 function cbf() { cat "$1" | cb; }  
+
 # Copy current working directory
 alias cbwd="pwd | cb"  
 
@@ -362,14 +363,10 @@ if [ -f "$HOME/.bcrc" ] ; then
     export BC_ENV_ARGS=~/.bcrc
 fi
 
-# if [ -f "$HOME/.xgs/me-local.sh" ] ; then
-    # . "$HOME/.xgs/me-local.sh"
-# fi
+if [ -f ~/.bash-local ]; then
+    source ~/.bash-local
+fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-
-if [ -f ~/.bash-local ]; then
-    source ~/.bash-local
-fi

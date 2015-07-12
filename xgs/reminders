@@ -1,6 +1,0 @@
-INCLUDE /home/ubuntu/.mysync/office/remind/holidays.rem
-INCLUDE /home/ubuntu/.mysync/office/remind/birthdays.rem
-INCLUDE /home/ubuntu/.mysync/office/remind/myreminders.rem
-INCLUDE /home/ubuntu/.mysync/office/remind/events.rem
-INCLUDE /home/ubuntu/.mysync/office/remind/quick-events.rem
-INCLUDE /home/ubuntu/.mysync/office/remind/misc.rem

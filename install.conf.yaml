@@ -13,5 +13,4 @@
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
     ~/.bin: bin
-    ~/.vim: vim
     ~/.ssh: ssh

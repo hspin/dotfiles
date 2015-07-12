@@ -16,16 +16,33 @@ alias remcc="remind -c+5 ~/.reminders"
 alias remedit="vim ~/gsync/office/remind/quick-events.rem"
 alias lcal="vim  ~/gsync/office/remind/myreminders.rem"
 
-if [ -f "${HOME}/.gnupg/gpg-agent-info-silver" ]; then
-    . "${HOME}/.gnupg/gpg-agent-info-silver"
-    export GPG_AGENT_INFO
-    export SSH_AUTH_SOCK
-fi
-
-#http://askubuntu.com/questions/473863/wireless-broadcom-4313-ubuntu-14-04-connection-established-but-no-traffic
 alias wifioff="sudo rfkill block wifi"
 alias wifion="sudo rfkill unblock all"
+
 alias pred="pass -c web/reddit"
 
 alias dpsrm="docker ps -a | grep Exit | awk '{print \$1}' | xargs docker rm"
 
+alias nb="docker run -it -v $HOME/docs/notebook:/home/uservim/code me_vimnotes"
+
+if [ -f "/usr/share/autojump/autojump.bash" ] ; then
+    source /usr/share/autojump/autojump.bash
+fi
+
+if [ -z "$TMUX" ]; then
+#not in tmux
+	# If we have keychain, start it 
+	# if [ -f /usr/bin/keychain ]; then
+	#     /usr/bin/keychain ~/.ssh/id_rsa
+	#     /usr/bin/keychain ~/.ssh/id_rsa_bit
+	#     source ~/.keychain/$HOSTNAME-sh > /dev/null
+	# fi
+
+#  ************* GPG_AGENT_INFO ******************
+  if [ -f "${HOME}/.gnupg/gpg-agent-info-${HOSTNAME}" ]; then
+    . "${HOME}/.gnupg/gpg-agent-info-${HOSTNAME}"
+    export GPG_AGENT_INFO
+    export SSH_AUTH_SOCK
+  fi
+
+fi
