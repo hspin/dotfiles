@@ -3,7 +3,6 @@
     ~/.bashrc: bashrc
     ~/.profile: profile
     ~/.bash_aliases: bash_aliases
-    ~/.bash-local: bash-local
     ~/.bcrc: bcrc 
     ~/.dircolors: dircolors
     ~/.gemrc: gemrc
@@ -13,4 +12,3 @@
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
     ~/.bin: bin
-    ~/.ssh: ssh

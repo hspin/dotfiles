@@ -1,8 +1,0 @@
-Host *
-    ServerAliveInterval 300
-    ServerAliveCountMax 2
-
-Host valinhos
-    Hostname 10.10.123.2
-    User adminuser
-    Port 60222
