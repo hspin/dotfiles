@@ -467,7 +467,8 @@ imap <F5> <C-R> ---<CR>USERNAME: <CR>COMMENTS: <CR>
 nnoremap <leader>n :bn<cr>
 nnoremap <leader>p :bp<cr>
 nnoremap <leader>d :Bdelete<cr>
-noremap <leader>x :close<cr>
+nnoremap <leader>x :bufdo :Bdelete<cr>
+nnoremap <leader>o :close<cr>
 
 " fast exit
 nmap __ :qa<CR>
