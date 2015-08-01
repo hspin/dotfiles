@@ -144,6 +144,7 @@ alias pwgen="pwgen 10"
 alias simpleserver="python -m SimpleHTTPServer 7070"
 alias ttc='tty-clock -c -t -C 3'
 alias k="less"
+alias lok="i3lock"
 
 #tmuxinator shortcuts
 alias tml="tmux list-sessions"
@@ -370,3 +371,5 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+
+[[ -s /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
