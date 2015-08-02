@@ -360,7 +360,7 @@ set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/*
 set wildignore+=*/.nx/**,*.app
 
  " Use local vimrc if available {
-if filereadable(glob("~/.xgs/vimrc-local")) 
+if filereadable(glob("~/.vimrc-local")) 
     source ~/.xgs/vimrc-local
 endif
 
