@@ -361,7 +361,7 @@ set wildignore+=*/.nx/**,*.app
 
  " Use local vimrc if available {
 if filereadable(glob("~/.vimrc-local")) 
-    source ~/.xgs/vimrc-local
+    source ~/.vimrc-local
 endif
 
 "}}}
