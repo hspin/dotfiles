@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "
+servers: mars, medusa, athena, midas, hermes, hades
+blueman-applet = bluetooth adapter
+robomongo = database manager
+qstart = scaffold a web app project from github
+scrot -d 3 desktop.png = takes screenshot
+"
