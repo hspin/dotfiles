@@ -7,7 +7,6 @@
     ~/.dircolors: dircolors
     ~/.gemrc: gemrc
     ~/.git.scmbrc: git.scmbrc
-    ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
