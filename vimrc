@@ -405,10 +405,10 @@ hi Pmenu guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 "}}}
 
 " my timesavers "{{{
-cmap W w
+" cmap W w
 cmap WQ wq
 cmap wQ wq
-cmap Q q
+" cmap Q q
 
 " Making it so ; works like : for commands
 " nnoremap ; :
