@@ -86,7 +86,7 @@ let g:agprg='ag --column'
 "Search and replace using quickfix list in Vim
 ":Ggrep findme
 ":Qargs | argdo %s/findme/replacement/gc | update
-nnoremap <Leader>9 :Qargs 
+nnoremap <leader>9 :Qargs <bar> argdo %s/yyfind/yyreplace/gc <bar> update
 
 " Ctrl-sr: Easier (s)earch and (r)eplace
 nnoremap <leader>r :%s/<c-r><c-w>//gc<left><left><left>
@@ -405,10 +405,18 @@ hi Pmenu guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 "}}}
 
 " my timesavers "{{{
-" cmap W w
-cmap WQ wq
-cmap wQ wq
-" cmap Q q
+
+if has("user_commands")
+    command! -bang -nargs=? -complete=file E e<bang> <args>
+    command! -bang -nargs=? -complete=file W w<bang> <args>
+    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+    command! -bang Wa wa<bang>
+    command! -bang WA wa<bang>
+    command! -bang Q q<bang>
+    command! -bang QA qa<bang>
+    command! -bang Qa qa<bang>
+endif
 
 " Making it so ; works like : for commands
 " nnoremap ; :
