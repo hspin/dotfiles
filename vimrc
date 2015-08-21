@@ -359,11 +359,6 @@ set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
 set wildignore+=*/.nx/**,*.app
 
- " Use local vimrc if available {
-if filereadable(glob("~/.vimrc-local")) 
-    source ~/.vimrc-local
-endif
-
 "}}}
 
 "***running make and jumping to errors"{{{
@@ -648,6 +643,11 @@ nmap <silent> <F7> :NERDTreeToggle<CR>
 "}}}
 
 " My latest additions "{{{
+
+" Use local vimrc if available {
+if filereadable($HOME.'/.vimrc-local')
+  source $HOME/.vimrc-local
+endif
 
 nnoremap <leader>h a
 nnoremap <leader>j A
