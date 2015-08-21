@@ -145,6 +145,7 @@ alias simpleserver="python -m SimpleHTTPServer 7070"
 alias ttc='tty-clock -c -t -C 3'
 alias k="less"
 alias lok="i3lock"
+alias rm="trash-put"
 
 #tmuxinator shortcuts
 alias tml="tmux list-sessions"
