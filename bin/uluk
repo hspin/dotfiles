@@ -1,0 +1,2 @@
+sudo bash /home/ubuntu/.bin/luksutil unmount-all
+
