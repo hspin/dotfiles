@@ -460,8 +460,8 @@ noremap L g_
 nmap <F4> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 imap <F4> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
 " template 
-nmap <F5> a<C-R> ---<CR>USERNAME: <CR>COMMENTS: <CR><Esc>
-imap <F5> <C-R> ---<CR>USERNAME: <CR>COMMENTS: <CR>
+nmap <F5> a<CR>username: <CR>comments: <CR><Esc>
+imap <F5> <CR>username: <CR>comments: <CR>
 
 "}}}
 
