@@ -603,6 +603,7 @@ augroup allFiles
     autocmd FileType perl set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=perl\ %
     autocmd FileType java set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=javac\ %
     autocmd FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
+    autocmd FileType votl set shiftwidth=2 softtabstop=2 tabstop=2 nolist
 augroup END
 
 " neocomplete autocmd - Enable omni completion.
