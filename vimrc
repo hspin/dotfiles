@@ -585,6 +585,8 @@ vnoremap <c-s> :s/\%V//g<left><left><left>
 
 " Autocommands "{{{
 
+autocmd BufEnter * if &filetype == "conf" | setlocal ft=markdown | endif
+
 augroup allFiles
     autocmd!
     " Return to last edit position when opening files (You want this!)
@@ -604,16 +606,18 @@ augroup allFiles
     autocmd FileType java set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=javac\ %
     autocmd FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
     autocmd FileType votl set shiftwidth=2 softtabstop=2 tabstop=2 nolist
+    autocmd FileType conf set shiftwidth=2 softtabstop=2 tabstop=2 nolist
 augroup END
 
 " neocomplete autocmd - Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType html setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
+autocmd FileType markdown NeoCompleteLock
 "}}}
 
 " Plugins - General "{{{
