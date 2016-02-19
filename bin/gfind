@@ -6,6 +6,6 @@ if [[ -z "$@" ]]; then
 fi
 
 #find . -type f -name $1 
-find . 2>/dev/null -name *$1* | grep -i --color=auto $1
+find . 2>/dev/null -iname "*$1*" | grep -i --color=auto $1
 
 
