@@ -52,4 +52,19 @@ or
 
 Out of the box, all you need to know is a single key Ctrl-n in visual mode
 
+## vim togglelist
+
+    <leader>l :call ToggleLocationList()<CR>
+    <leader>q :call ToggleQuickfixList()<CR>
+
+## Unite
+
+:Unite outline
+
+## vim sneak
+    s{char}{char}
+    Press ; to go to the next match
+    Press ctrl-o to go back to the starting point
+    Press s<Enter> at any time to repeat the last Sneak-search
+    Press S to search backwards
 
