@@ -607,6 +607,7 @@ augroup allFiles
     autocmd FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
     autocmd FileType votl set shiftwidth=2 softtabstop=2 tabstop=2 nolist
     autocmd FileType conf set shiftwidth=2 softtabstop=2 tabstop=2 nolist
+    autocmd FileType yaml set shiftwidth=2 softtabstop=2 tabstop=2 nolist
 
     autocmd FileType jade set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
     autocmd FileType stylus set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
