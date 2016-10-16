@@ -359,6 +359,12 @@ function qstart() {
     echo "done -"
 }
 
+# check if reboot is needed
+
+if [ -f /var/run/reboot-required ]; then
+  echo 'reboot required'
+fi
+
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
 # ----------------------------------------------------------------------
@@ -371,7 +377,7 @@ if [ -f ~/.bash-local ]; then
     source ~/.bash-local
 fi
 
-[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 

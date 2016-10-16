@@ -611,6 +611,7 @@ augroup allFiles
     autocmd FileType jade set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
     autocmd FileType stylus set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
     autocmd FileType javascript set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=indent foldlevel=2 nolist
+    autocmd FileType yaml set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
 
 augroup END
 
