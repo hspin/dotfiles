@@ -9,5 +9,6 @@
     ~/.git.scmbrc: git.scmbrc
     ~/.gitignore: gitignore
     ~/.tmux.conf: tmux.conf
+    ~/.tigrc: tigrc
     ~/.vimrc: vimrc
     ~/.bin: bin
