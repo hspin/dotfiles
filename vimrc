@@ -624,8 +624,6 @@ autocmd FileType javascript setlocal omnifunc=tern#Complete
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-autocmd FileType markdown NeoCompleteLock
-autocmd FileType votl NeoCompleteLock
 "}}}
 
 " Plugins - General "{{{
