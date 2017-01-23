@@ -404,8 +404,8 @@ hi Pmenu guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
 if has("user_commands")
     command! -bang -nargs=? -complete=file E e<bang> <args>
     command! -bang -nargs=? -complete=file W w<bang> <args>
-    command! -bang -nargs=? -complete=file Wq wq<bang> <args>
-    command! -bang -nargs=? -complete=file WQ wq<bang> <args>
+    " command! -bang -nargs=? -complete=file Wq wq<bang> <args>
+    " command! -bang -nargs=? -complete=file WQ wq<bang> <args>
     command! -bang Wa wa<bang>
     command! -bang WA wa<bang>
     command! -bang Q q<bang>
@@ -473,8 +473,11 @@ nnoremap <leader>d :Bdelete<cr>
 nnoremap <leader>x :bufdo :Bdelete<cr>
 nnoremap <leader>o :close<cr>
 
+" fast save and exit
+nmap __ :wa<CR>:qa<CR>
+
 " fast exit
-nmap __ :qa<CR>
+nmap == :qa<CR>
 
 " <Leader>``: Force quit all
 nnoremap <Leader>`` :qa!<cr>
