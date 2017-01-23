@@ -691,9 +691,7 @@ nnoremap <leader><leader> :
 nnoremap <leader>= gg=G``  
 
 " learn to use ctr-[ instead of escape
-:set ro
-
-" nnoremap ZZ :set noro && :wq <CR> 
+cmap wq :
 
 "}}}
 
