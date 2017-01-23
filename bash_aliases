@@ -153,7 +153,8 @@ alias tmll="ls ~/.tmuxinator/"
 alias tma="tmux -2 attach -t $1"
 alias tmk="tmux kill-session -t $1"
 
-alias cdd="cd /home/ubuntu/gs"
+alias cdd="cd /home/ubuntu/xgs/docs"
+alias cdg="cd /home/ubuntu/xgs/docs/gtd/projects"
 
 #}}}
 
