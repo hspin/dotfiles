@@ -690,6 +690,11 @@ nnoremap <leader><leader> :
 " fast whole file alignment
 nnoremap <leader>= gg=G``  
 
+" learn to use ctr-[ instead of escape
+:set ro
+
+" nnoremap ZZ :set noro && :wq <CR> 
+
 "}}}
 
- " vim: set foldenable foldmethod=marker foldlevel=0:
+" vim: set foldenable foldmethod=marker foldlevel=0:
