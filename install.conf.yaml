@@ -3,6 +3,8 @@
     ~/.bashrc: bashrc
     ~/.profile: profile
     ~/.bash_aliases: bash_aliases
+    ~/.bash_profile: bash_profile
+    ~/.bash_login: bash_login
     ~/.bcrc: bcrc 
     ~/.dircolors: dircolors
     ~/.gemrc: gemrc
