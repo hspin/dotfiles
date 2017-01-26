@@ -20,8 +20,14 @@ if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
   exec startx
 fi
 
+
+# export variables
+export LC_MESSAGES="C"
+
+
 #if [ -n "$TMUX" ]; then
-  # yes tmux
+# yes tmux
 #  . "$HOME/.bashrc"
 #fi
 
+# vim: set ft=sh:

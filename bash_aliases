@@ -383,3 +383,6 @@ fi
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 [[ -s /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
+
+
+# vim: set ft=sh:
