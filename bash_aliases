@@ -141,6 +141,8 @@ alias pwgenx="/usr/bin/pwgen -sBcn 12 8"
 alias pwgenxx="/usr/bin/pwgen -sBcn 16 8"
 alias pwgen="pwgen 10"
 
+alias o=go
+
 alias simpleserver="python -m SimpleHTTPServer 7070"
 alias ttc='tty-clock -c -t -C 3'
 alias k="less"
@@ -153,8 +155,15 @@ alias tmll="ls ~/.tmuxinator/"
 alias tma="tmux -2 attach -t $1"
 alias tmk="tmux kill-session -t $1"
 
-alias cdd="cd /home/ubuntu/xgs/docs"
-alias cdg="cd /home/ubuntu/xgs/docs/gtd/projects"
+# tmux
+alias tnews='tnew_session'
+alias tls='tmux list-session'
+alias tlw='tmux list-window'
+alias tsw='tmux switch -t '
+alias tlc='tmux list-command'
+alias tat='tmux attach -t'
+alias trs='tmux rename-session -t'
+alias tks='tmux kill-session -t'
 
 #}}}
 
@@ -347,8 +356,6 @@ go() {
    fi
  }
 
-alias o=go
-
 # get a project scaffold quick
 function qstart() {
     REALDIR="template-ready"
@@ -360,15 +367,20 @@ function qstart() {
     echo "done -"
 }
 
-# check if reboot is needed
-
-if [ -f /var/run/reboot-required ]; then
-  echo 'reboot required'
-fi
+tnew_session(){
+    # To avoid 'unset $TMUX to force' error
+    TMUX= tmux new-session -d -s $1
+        tmux switch-client -t $1
+}
 
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
 # ----------------------------------------------------------------------
+
+# check if reboot is needed
+if [ -f /var/run/reboot-required ]; then
+  echo 'reboot required'
+fi
 
 if [ -f "$HOME/.bcrc" ] ; then
     export BC_ENV_ARGS=~/.bcrc
@@ -383,6 +395,5 @@ fi
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 [[ -s /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
-
 
 # vim: set ft=sh:
