@@ -478,6 +478,7 @@ nmap __ :wa<CR>:qa<CR>
 
 " fast exit
 nmap == :qa<CR>
+nmap qq :qa<CR>
 
 " <Leader>``: Force quit all
 nnoremap <Leader>`` :qa!<cr>
@@ -588,7 +589,10 @@ vnoremap <c-s> :s/\%V//g<left><left><left>
 
 " Autocommands "{{{
 
-autocmd BufEnter * if &filetype == "conf" | setlocal ft=markdown | endif
+" markdown all non extension files
+" autocmd BufEnter * if &filetype == "conf" | setlocal ft=markdown | endif
+" autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=sh | endif
+autocmd BufNewFile,BufRead /home/ubuntu/build/* set wrap ft=markdown
 
 augroup allFiles
     autocmd!
