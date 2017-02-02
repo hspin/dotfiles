@@ -696,6 +696,8 @@ nnoremap <leader>= gg=G``
 " learn to use ctr-[ instead of escape
 cmap wq :
 
+map <Enter> :w<CR>
+
 "}}}
 
 " vim: set foldenable foldmethod=marker foldlevel=0:
