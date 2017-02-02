@@ -24,6 +24,10 @@ fi
 # export variables
 export LC_MESSAGES="C"
 
+# super caps lock key; apt install xscape
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape'
+
 
 #if [ -n "$TMUX" ]; then
 # yes tmux
