@@ -592,7 +592,7 @@ vnoremap <c-s> :s/\%V//g<left><left><left>
 " markdown all non extension files
 " autocmd BufEnter * if &filetype == "conf" | setlocal ft=markdown | endif
 " autocmd BufNewFile,BufRead * if expand('%:t') !~ '\.' | set syntax=sh | endif
-autocmd BufNewFile,BufRead /home/ubuntu/build/* set wrap ft=markdown
+autocmd BufNewFile,BufRead /home/ubuntu/notes/* set wrap ft=markdown
 
 augroup allFiles
     autocmd!
