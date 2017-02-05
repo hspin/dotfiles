@@ -19,7 +19,10 @@ fi
 xhost +si:localuser:$( whoami ) >&/dev/null && {
     # echo "YES GUI"
 
-    exec startx
+    # start windows manager
+    if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      exec startx
+    fi
 
     # super caps lock key; apt install xscape
     if [ -x /usr/bin/setxkbmap ] && [ -z "$DISPLAY" ]; then
@@ -33,10 +36,6 @@ xhost +si:localuser:$( whoami ) >&/dev/null && {
    # echo "No, only console"
    echo "console only"
 }
-
-# start windows manager
-# if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-# fi
 
 
 # export variables
