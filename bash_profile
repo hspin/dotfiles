@@ -15,23 +15,33 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# test display
+xhost +si:localuser:$( whoami ) >&/dev/null && {
+    # echo "YES GUI"
+
+    exec startx
+
+    # super caps lock key; apt install xscape
+    if [ -x /usr/bin/setxkbmap ] && [ -z "$DISPLAY" ]; then
+        setxkbmap -option 'caps:ctrl_modifier'
+    fi
+
+    if [ -x /usr/bin/xcape ] && [ -z "$DISPLAY" ]; then
+        xcape -e 'Caps_Lock=Escape'
+    fi
+} || {
+   # echo "No, only console"
+   echo "console only"
+}
+
 # start windows manager
-if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
-  exec startx
-fi
+# if [ -z "$DISPLAY" ] && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+# fi
 
 
 # export variables
 export LC_MESSAGES="C"
 
-# super caps lock key; apt install xscape
-if [ -x /usr/bin/setxkbmap ]; then
-    setxkbmap -option 'caps:ctrl_modifier'
-fi
-
-if [ -x /usr/bin/xcape ]; then
-    xcape -e 'Caps_Lock=Escape'
-fi
 
 #if [ -n "$TMUX" ]; then
 # yes tmux
