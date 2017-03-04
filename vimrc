@@ -504,7 +504,7 @@ function s:appendSemiColon()
 endfunction
 
 " For programming languages using a semi colon at the end of statement.
-autocmd FileType c,cpp,css,java,javascript,perl,php nmap <silent><C-\> :call <SID>appendSemiColon()<cr>
+autocmd FileType c,cpp,css,java,javascript,perl,php nmap <silent><leader>\ :call <SID>appendSemiColon()<cr>
 
 "}}}
 
@@ -616,6 +616,7 @@ augroup allFiles
     autocmd FileType yaml set shiftwidth=2 softtabstop=2 tabstop=2 nolist
 
     autocmd FileType jade set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
+    autocmd FileType pug set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
     autocmd FileType stylus set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
     autocmd FileType javascript set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=indent foldlevel=2 nolist
     autocmd FileType yaml set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
