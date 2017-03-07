@@ -613,6 +613,7 @@ augroup allFiles
     autocmd FileType java set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=javac\ %
     autocmd FileType lua set shiftwidth=4 softtabstop=4 tabstop=4 makeprg=lua\ %
     autocmd FileType votl set shiftwidth=2 softtabstop=2 tabstop=2 nolist
+    autocmd FileType votl colorscheme molokai
     autocmd FileType yaml set shiftwidth=2 softtabstop=2 tabstop=2 nolist
 
     autocmd FileType jade set shiftwidth=2 softtabstop=2 tabstop=2 foldenable foldmethod=marker foldlevel=0 nolist
@@ -701,6 +702,9 @@ nnoremap <leader>= gg=G``
 cmap wq :
 
 map <Enter> :w<CR>
+
+xmap <unique> <Leader>7 <Plug>NrrwrgnDo <cr> <c-w>_
+nmap <unique> <Leader>0 :WidenRegion<cr> :close<cr>
 
 "}}}
 
