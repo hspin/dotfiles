@@ -9,4 +9,5 @@ scrot -d 3 desktop.png = takes screenshot
 ~/.local/bin/gcalcli calm
 ~/.local/bin/gcalcli quick
 gcal quick --calendar family-share \"5pm 04/2017 test appt\"
+tig = show diff press 7 (bind diff)
 "
