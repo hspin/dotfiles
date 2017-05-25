@@ -457,11 +457,11 @@ noremap L g_
 
 " my templates "{{{
 
-nmap <F4> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
-imap <F4> <C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR>
+nmap <F4> a<C-R>=strftime("%Y-%m-%d")<CR><Esc>
+imap <F4> <C-R>=strftime("%Y-%m-%d")<CR>
 " template 
-nmap <F5> a<CR>username: <CR>comments: <CR><Esc>
-imap <F5> <CR>username: <CR>comments: <CR>
+nmap <F5> ilogin:<CR>url:<CR><Esc>
+imap <F5> login:<CR>url:<CR>
 
 "}}}
 
