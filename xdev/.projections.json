@@ -1,0 +1,8 @@
+{
+  "src/*.js": {
+    "type": "component"
+  },
+  "src/App.js": { "type": "component" },
+  "public/*": { "type": "public" },
+  "README.md": {"type": "doc"}
+}
