@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # apt install entr
-
 while true; do
   git ls-files "$(git rev-parse --show-toplevel)" | entr -pd kill -USR1 "$TIG_PID"; kill -USR1 "$TIG_PID";
 done
