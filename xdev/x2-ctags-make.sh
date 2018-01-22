@@ -15,4 +15,6 @@ if ! [ -x "$(command -v jsctags)" ]; then
   exit 1
 fi
 
-find . -type f -iregex ".*\.js$" -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+while true; do
+  git ls-files "$(git rev-parse --show-toplevel)" | entr find . -type f -iregex ".*\.js$" -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+done
