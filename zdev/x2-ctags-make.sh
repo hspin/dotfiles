@@ -16,5 +16,6 @@ if ! [ -x "$(command -v jsctags)" ]; then
 fi
 
 while true; do
-  git ls-files "$(git rev-parse --show-toplevel)" | entr find . -type f -iregex ".*\.js$" -not -path "./node_modules/*" -exec jsctags {} -f \; | sed '/^$/d' | sort > tags
+  # ls -e ./src/*.js | entr -d ./x3-ctags-make.sh
+  git ls-files "$(git rev-parse --show-toplevel)" | entr -d ./x3-ctags-make.sh
 done

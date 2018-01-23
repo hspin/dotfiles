@@ -8,5 +8,5 @@
 #ls site*.txt | entr tmux send-keys -t .0 ":windo e" C-m
 
 while true; do
-  git ls-files "$(git rev-parse --show-toplevel)" | entr tmux send-keys -t top "R" C-m
+  git ls-files "$(git rev-parse --show-toplevel)" | entr -d tmux send-keys -t top "R" C-m
 done
