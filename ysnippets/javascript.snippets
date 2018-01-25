@@ -1,0 +1,74 @@
+# React & JSX
+snippet rcx "React Class Component mod" b
+import React, { Component} from 'react';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+  render() {
+    return (
+      $3
+    );
+  }
+}
+
+export default $1;
+endsnippet
+
+
+
+# React & JSX
+snippet rrcc "React Redux Class Component mod" b
+import React, { Component} from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import styles from './${2:$1}.css';
+
+class ${1:`!v expand('%:t:r')`} extends Component {
+  static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    dispatch: PropTypes.func.isRequired,
+  };
+
+  constructor(props) {
+    super(props);
+}
+
+  render() {
+    return (
+      <div className={styles.base}>
+        $3
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state) {
+  return {};
+}
+
+export default connect(mapStateToProps)($1);
+endsnippet
+
+
+
+# my react import
+snippet imx "import { member } from 'xyz' mod"
+import { ${1:`!v expand('%:t:r')`} } from './components/${2:$1}';
+endsnippet
+
+
+
+# my react dispatch
+snippet taf
+  ${1:function_name} = (${2}) => {
+  this.props.dispatch({ type: '${2}' });
+  }
+${3}
+endsnippet
+
+
+
+# my react onClick
+snippet roc
+onClick={this.${1:event_name}> 
+endsnippet

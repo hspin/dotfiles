@@ -820,6 +820,11 @@ au Syntax * RainbowParenthesesLoadBraces
 " mxw/vim-jsx
 let g:jsx_ext_required = 0
 
+" linux
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.dotfiles/ysnippets']
+" windows
+" let g:UltiSnipsSnippetDirectories=[$HOME.'/ysnippets']
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functional keys
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
