@@ -1,44 +1,52 @@
 ###############  .gitignore   ##################
+
+# Dependencies
+
+node_modules/
+bower_components/
+
+.idea/
+.vscode/
+
+# production
+build/
+dist/
+
 # Local Configuration
 # Explicitly ignore files which contain:
 # 1. Sensitive information
 # 2. Environment-specific configuration
 
 config/local.js
-
-# Dependencies
-
-node_modules
-bower_components
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
 # Sails.js / Waterline / Grunt
 .tmp
 dump.rdb
 
 # Node.js / NPM
-
-lib-cov
+lib-cov/
 *.seed
 *.log
 *.out
 *.pid
-npm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Miscellaneous
-
 *~
 *#
 .DS_STORE
 .netbeans
 nbproject
-.idea
 .node_history
-.sessions
 
 # Other
 ######################
 .sync
+.sessions
 
-# this project
-
-#dist
