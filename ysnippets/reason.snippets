@@ -41,22 +41,14 @@ let make = ( _children) => {
     },
   render: (self) => {
     let message = "Clicked " ++ string_of_int(self.state.count) ++ " times(s)";
-    let msg = if (self.state.show) {
-    "True!"
-    } else {
-    "False!"
-    };
-    <div className="${2:`!v expand('%:t:r')`}">
-      <p>
-      {ReasonReact.stringToElement(message)}
-      </p>
-      <p>
-      {ReasonReact.stringToElement(msg)}
-      </p>
-      <button className="sp-button"
+    let msg = (self.state.show) ? "True!" : "False!";
+    <div className="hs-${2:`!v expand('%:t:r')`}">
+      <p> {ReasonReact.stringToElement(message)} </p>
+      <p> {ReasonReact.stringToElement(msg)} </p>
+      <button className="hs-button"
         onClick={_event => self.send(Click)}
       />
-      <button className="sp-button"
+      <button className="hs-button"
         onClick={_event => self.send(Toggle)}
       />
     </div>
