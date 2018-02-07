@@ -1,0 +1,65 @@
+# Reason React
+snippet recc "Reason Component mod" b
+[%bs.raw {|require('./app.css')|}];
+
+[@bs.module] external logo : string = "./logo.svg";
+
+let component = ReasonReact.statelessComponent("${1:`!v substitute(expand('%:t:r'), '\(^.\|_\a\)', '\u&', 'g') `}");
+
+let make = (~message, _children) => {
+  ...component,
+  render: (_self) =>${2}
+    <div className="App">
+      <div className="App-header">
+        <img src=logo className="App-logo" alt="logo" />
+        <h2> (ReasonReact.stringToElement(message)) </h2>
+      </div>
+    </div>
+};
+endsnippet
+
+
+snippet rerc "Reason Reducer Component" c
+type action =
+  | Click
+  | Toggle;
+
+type state = {
+  count: int,
+  show: bool
+};
+
+let component = ReasonReact.reducerComponent("${1:`!v substitute(expand('%:t:r'), '\(^.\|_\a\)', '\u&', 'g') `}");
+
+let make = ( _children) => {
+  ...component,
+  initialState: () => {count: 0, show: false},
+  reducer: (action, state) =>
+    switch (action) {
+    | Click => ReasonReact.Update({...state, count: state.count + 1})
+    | Toggle => ReasonReact.Update({...state, show: ! state.show})
+    },
+  render: (self) => {
+    let message = "Clicked " ++ string_of_int(self.state.count) ++ " times(s)";
+    let msg = if (self.state.show) {
+    "True!"
+    } else {
+    "False!"
+    };
+    <div className="${2:`!v expand('%:t:r')`}">
+      <p>
+      {ReasonReact.stringToElement(message)}
+      </p>
+      <p>
+      {ReasonReact.stringToElement(msg)}
+      </p>
+      <button className="sp-button"
+        onClick={_event => self.send(Click)}
+      />
+      <button className="sp-button"
+        onClick={_event => self.send(Toggle)}
+      />
+    </div>
+    }
+};
+endsnippet
