@@ -9,9 +9,9 @@ let component = ReasonReact.statelessComponent("${1:`!v substitute(expand('%:t:r
 let make = (~message, _children) => {
   ...component,
   render: (_self) => {${2}
-    <div className="App">
-      <div className="App-header">
-        <img src=logo className="App-logo" alt="logo" />
+    <div className="hs-${2:`!v expand('%:t:r')`}">
+      <div className="hs-app-header">
+        <img src=logo className="hs-app-logo" alt="logo" />
         <h2> (ReasonReact.stringToElement(message)) </h2>
       </div>
     </div>
