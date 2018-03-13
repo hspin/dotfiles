@@ -59,6 +59,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'ledger/vim-ledger'
 Plug 'vimoutliner/vimoutliner'
 Plug 'elzr/vim-json'
+Plug 'mtth/scratch.vim'
+Plug 'plasticboy/vim-markdown'
 
 " Development
 Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
@@ -667,7 +669,7 @@ inoremap <C-a> ggVG
 nnoremap U :redo<cr>
 
 " fast exit
-nmap qq :qa<CR>
+" nmap qq :qa<CR>
 
 " Fix annoying surround.vim message
 vmap s S
@@ -684,10 +686,39 @@ nnoremap <silent> p p`]
 
 " my mappings more 
 nnoremap <BS> :
-nnoremap <Enter> :w<CR>
+nnoremap <leader>6 :
+
+" save with enter
+" nnoremap <Enter> :w<CR>
+nnoremap <expr> <cr> &modified ? ":update<cr>" : "<cr>"
 
 " fast whole file alignment
 nnoremap <leader>= gg=G``  
+
+" Ctrl+A goes to the front of the command line
+cnoremap <C-A>  <Home>
+" Ctrl+E goes to the end of the command line
+cnoremap <C-E>  <End>
+
+" move to beginning/end of line
+nnoremap B ^
+nnoremap E $
+
+" highlight last inserted text
+nnoremap gv `[v`]
+" Jump to the last edited palce
+nnoremap ge `.
+
+nnoremap ; q:i
+nnoremap : ;
+vnoremap ; q:i
+vnoremap : ;
+
+nnoremap / q/i
+nnoremap ? q?i
+
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ModeMappings
@@ -774,6 +805,11 @@ nnoremap <leader>a :Gack
 nnoremap <leader>A :Ack! 
 command! -nargs=* Gack :execute 'Ack! '  . expand('<args>')  '%:p:h'
 
+" plasticboy/vim-markdown
+let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_folding_level = 4
+" let g:vim_markdown_conceal = 0
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - development
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -836,3 +872,4 @@ nnoremap <leader>i :IndentLinesToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => WORKING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
