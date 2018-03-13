@@ -449,7 +449,10 @@ nnoremap <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>d mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" markdown set conceal level
+noremap <Leader>m :set conceallevel=2
 
 " Toggle paste mode on and off
 nnoremap <leader>pp :setlocal paste!<cr>
@@ -641,7 +644,7 @@ augroup end
 nnoremap <leader>n :b#<CR>
 nnoremap <leader>c :close<CR>
 nnoremap <leader>o :BufExplorer<CR>
-nnoremap <silent> <Leader>q :Bdelete<CR>
+nnoremap <silent> <Leader>x :Bdelete<CR>
 
 nnoremap <c-p> :Files<CR>
 nnoremap <leader>b :Buffers<CR>
@@ -670,6 +673,7 @@ nnoremap U :redo<cr>
 
 " fast exit
 " nmap qq :qa<CR>
+nnoremap <silent> <Leader>q :qa<CR>
 
 " Fix annoying surround.vim message
 vmap s S
