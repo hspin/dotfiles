@@ -79,8 +79,6 @@ if [ -e "$HOME/.lbin-local" ] ; then
     PATH=$HOME/.lbin-local:$PATH
 fi
 
-#export PATH=~/.dotfiles/bin:${PATH}
-
 export PATH
 
 # -------------------------------------------------------------------
@@ -141,13 +139,14 @@ alias pwgenx="/usr/bin/pwgen -sBcn 12 8"
 alias pwgenxx="/usr/bin/pwgen -sBcn 16 8"
 alias pwgen="pwgen 10"
 
-alias o=go
+alias o=xygo
 
 alias simpleserver="python -m SimpleHTTPServer 7070"
 alias ttc='tty-clock -c -t -C 3'
 alias k="less"
 alias lok="i3lock"
-alias rm="trash-put"
+alias rm="trash-put -v"
+alias tp="trash-put"
 
 #tmuxinator shortcuts
 alias tml="tmux list-sessions"
@@ -164,6 +163,57 @@ alias tlc='tmux list-command'
 alias tat='tmux attach -t'
 alias trs='tmux rename-session -t'
 alias tks='tmux kill-session -t'
+alias tnew='tmux new-session -A -s '
+
+# misc
+alias rg='ranger'
+alias v='f -e vim'
+alias vv='f -i -e vim'
+alias myip='my_ip'
+alias ts='tig status'
+
+alias yt='cd $HOME/incoming; youtube-dl --verbose'
+alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-format mp3 '
+
+alias pk-show='apt-cache show'
+
+pk-search () {
+  apt-cache search $1 | sort | egrep "${1}|$"
+}
+
+fzf-linuxlib-widget() {
+  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
+  printf '%s\n' "${command}"
+  history -s "${command} "
+  # eval ${command}
+}
+
+fzf-linuxlib-widget-enter() {
+  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
+  # RBUFFER=${RBUFFER}${command}
+  printf '%s\n' "${command}"
+  history -s "${command} "
+  eval ${command}
+}
+
+# -------------------------------------------------------------------
+# bash mode and bind keys
+# -------------------------------------------------------------------
+set -o emacs
+# Alt-e (or Esc e) will toggle between modes.
+bind '"\ee": vi-editing-mode'
+bind -x '"\eb":"fzf-linuxlib-widget-enter"'
+bind -x '"\eB":"fzf-linuxlib-widget"'
+
+set -o vi
+bind -x '"\en":"fzf-linuxlib-widget-enter"'
+bind -x '"\eN":"fzf-linuxlib-widget"'
+
+# Alt-e (or Esc e) will toggle between modes.
+bind '"\ee": emacs-editing-mode'
+bind '";;":"\e"'
+bind '"\e."':yank-last-arg
+bind -m vi-insert "\C-l":clear-screen
 
 #}}}
 
@@ -324,8 +374,8 @@ function cbf() { cat "$1" | cb; }
 # Copy current working directory
 alias cbwd="pwd | cb"  
 
-# the go command
-go() {
+# the xygo command
+xygo() {
    if [ -f "$1" ]; then
      if [ -n "`file $1 | grep '\(text\|empty\|no magic\)'`" ]; then
        if [ -w "$1" ]; then
@@ -373,6 +423,17 @@ tnew_session(){
         tmux switch-client -t $1
 }
 
+mkcd () {
+  case "$1" in
+    */..|*/../) cd -- "$1";; # that doesn't make any sense unless the directory already exists
+    /*/../*) (cd "${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd -- "$1";;
+    /*) mkdir -p "$1" && cd "$1";;
+    */../*) (cd "./${1%/../*}/.." && mkdir -p "./${1##*/../}") && cd "./$1";;
+    ../*) (cd .. && mkdir -p "${1#.}") && cd "$1";;
+    *) mkdir -p "./$1" && cd "./$1";;
+  esac
+}
+
 # ----------------------------------------------------------------------
 #  SHELL OPTIONS
 # ----------------------------------------------------------------------
@@ -393,7 +454,5 @@ fi
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-
-[[ -s /usr/share/autojump/autojump.bash ]] && source /usr/share/autojump/autojump.bash
 
 # vim: set ft=sh:
