@@ -176,6 +176,7 @@ alias yt='cd $HOME/incoming; youtube-dl --verbose'
 alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-format mp3 '
 
 alias pk-show='apt-cache show'
+alias gdiff='git diff --no-ext-diff'
 
 bz () {
   [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
