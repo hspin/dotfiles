@@ -177,6 +177,10 @@ alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-forma
 
 alias pk-show='apt-cache show'
 
+bz () {
+  [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+}
+
 pk-search () {
   apt-cache search $1 | sort | egrep "${1}|$"
 }
@@ -204,6 +208,7 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\eb":"fzf-linuxlib-widget-enter"'
 bind -x '"\eB":"fzf-linuxlib-widget"'
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\en":"fzf-linuxlib-widget-enter"'
