@@ -170,7 +170,7 @@ alias rg='ranger'
 alias v='f -e vim'
 alias vv='f -i -e vim'
 alias myip='my_ip'
-alias ts='tig status'
+alias tigs='tig status'
 
 alias yt='cd $HOME/incoming; youtube-dl --verbose'
 alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-format mp3 '
