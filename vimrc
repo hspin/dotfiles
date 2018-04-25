@@ -146,6 +146,7 @@ set wildignore+=tmp/**
 set wildignore+=*.png,*.jpg,*.gif
 set wildignore+=*.so,*.swp,*.zip,*/.Trash/**,*.pdf,*.dmg,*/Library/**,*/.rbenv/**
 set wildignore+=*/.nx/**,*.app
+set wildignore+=*/node_modules/**,*/bower_components/**
 
 "Always show current position
 set ruler
@@ -647,10 +648,13 @@ nnoremap <leader>o :BufExplorer<CR>
 nnoremap <silent> <Leader>x :Bdelete<CR>
 
 nnoremap <c-p> :Files<CR>
-nnoremap <leader>b :Buffers<CR>
+nnoremap <bar> :Buffers<CR>
+nnoremap \ :Lines<CR>
+nnoremap <leader>t :Tags<CR>
+nnoremap <leader>z :cclose<CR>
+nnoremap <leader>j mO :Ack! "\b<cword>\b" <CR>
 
 nnoremap <Leader>p :E
-	
 nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -723,6 +727,12 @@ nnoremap ? q?i
 
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
+
+if &diff
+    nnoremap <leader>1 :diffget LOCAL
+    nnoremap <leader>2 :diffget BASE
+    nnoremap <leader>3 :diffget REMOTE
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ModeMappings
