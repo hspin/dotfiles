@@ -61,6 +61,7 @@ Plug 'vimoutliner/vimoutliner'
 Plug 'elzr/vim-json'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
+Plug 'lambdalisue/vim-foldround'
 
 " Development
 Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
@@ -584,6 +585,17 @@ augroup infosec03
     autocmd FileType c,cpp,css,java,javascript,perl,php nmap <silent><leader>\ :call <SID>appendSemiColon()<cr>
 augroup end
 
+" Append modeline after last line in buffer.
+" Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
+" files.
+function! AppendModeline()
+  let l:modeline = printf(" vim: set ft=sh ts=%d sw=%d tw=%d fdm=marker fdl=0 fen :",
+        \ &tabstop, &shiftwidth, &textwidth)
+  let l:modeline = substitute(&commentstring, "%s", l:modeline, "")
+  call append(line("$"), l:modeline)
+endfunction
+
+nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Filetypes and Completions
@@ -734,6 +746,11 @@ if &diff
     nnoremap <leader>3 :diffget REMOTE
 endif
 
+nnoremap <silent> <leader>mm :set modeline \| doautocmd BufRead<CR>
+
+" disable folding"
+set nofoldenable    
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => ModeMappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -823,6 +840,10 @@ command! -nargs=* Gack :execute 'Ack! '  . expand('<args>')  '%:p:h'
 let g:vim_markdown_folding_disabled = 1
 " let g:vim_markdown_folding_level = 4
 " let g:vim_markdown_conceal = 0
+
+" lambdalisue/vim-foldround
+nmap <Leader>ff <Plug>(foldround-forward)
+nmap <Leader>fb <Plug>(foldround-backward)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - development
