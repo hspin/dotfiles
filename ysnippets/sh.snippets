@@ -18,14 +18,14 @@ __file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
 __base="$(basename ${__file} .sh)"
 __root="$(cd "$(dirname "${__dir}")" && pwd)" # <-- change this as it depends on your app
 
-arg1="${1:-}"
-arg2="${2:-}"
+arg1="\$\{1:-\}"
+arg2="\$\{2:-\}"
 #}}}
 
 # Setup help menu{{{
 help() {
   cat << EOF
-usage: $0 [OPTIONS]
+usage: \$0 [OPTIONS]
     --help               Show this message
     --all                Download fzf binary and update configuration files
                          to enable key bindings and fuzzy completion
@@ -71,17 +71,24 @@ done
 # call function based on condition{{{
 if [ $# -eq 0 ]
   then
-    echo "No arguments supplied\n running \n done"
+    echo "No arguments supplied"
+    echo "Running..."
+    echo "Done"
+    echo "Exiting"
     exit 1
 fi
 
 if [[ -z "${arg2}" && "${auto_read}" = 1 ]]; then
     echo "No modifier supplied"
     echo "running ALL solo"
+    echo "Exiting"
+    exit 1
 else
     echo "running ALL with ${arg2}"
 fi
 #}}}
+
+echo "Finished"
 
 # vim: set ft=sh ts=2 sw=2 tw=500 fdm=marker fdl=0 fen :
 endsnippet
