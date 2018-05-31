@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 
-curl -s wttr.in/boston | head -7
+curl -s wttr.in/boston?u | head -7
 
