@@ -862,7 +862,8 @@ smap <expr><CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 " let g:UltiSnipsExpandTrigger="<tab>"                                            
 " let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
 " let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsExpandTrigger="<C-j>"
+"let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsExpandTrigger="<C-l>"
 
 " xolox/vim-session
 let g:session_autosave = 'no'
@@ -892,9 +893,10 @@ au Syntax * RainbowParenthesesLoadBraces
 let g:jsx_ext_required = 0
 
 " linux
-let g:UltiSnipsSnippetDirectories=[$HOME.'/.dotfiles/ysnippets']
+let g:UltiSnipsSnippetDir= [$HOME.'/.dotfiles/ysnippets']
+let g:UltiSnipsSnippetDirectories= [$HOME.'/.dotfiles/ysnippets', 'UltiSnips']
 " windows
-" let g:UltiSnipsSnippetDirectories=[$HOME.'/ysnippets']
+" let g:UltiSnipsSnippetDir=[$HOME.'/ysnippets']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functional keys
@@ -907,4 +909,15 @@ nnoremap <leader>i :IndentLinesToggle<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => WORKING
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" html edits - move to after tag > INSERT
+nnoremap <leader>f f>li
+" html edits - move to inside quotes
+nnoremap <leader>v f"l
+" js edits - curly brackets open and position
+imap <C-c> <CR><Esc>O
+" quick exit no save
+nnoremap <C-c>`` :qa!<cr>
+" alt command mode
+nnoremap <C-c> :
 
