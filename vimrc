@@ -710,7 +710,7 @@ nnoremap <leader>6 :
 
 " save with enter
 " nnoremap <Enter> :w<CR>
-nnoremap <expr> <cr> &modified ? ":update<cr>" : "<cr>"
+" nnoremap <expr> <cr> &modified ? ":update<cr>" : "<cr>"
 
 " fast whole file alignment
 nnoremap <leader>= gg=G``  
