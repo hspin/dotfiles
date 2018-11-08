@@ -1,5 +1,28 @@
 # vim notes
 
+## change and surround
+
+with vim surround plugin, change tag, don't close to keep class attr
+
+    cstt 
+
+change word from anywhere inside the word
+
+    caw
+
+change one character and go to insert
+    
+    s
+
+delete html tag
+
+    dat : "delete around tag"
+    dit : "delete inside tag"
+
+    cat and cit
+    vat and vit
+
+
 ## Close all the buffers
     nnoremap <leader>ba :bufdo bd<cr>
 
