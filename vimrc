@@ -677,8 +677,8 @@ nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 nnoremap Y y$
 
 " use these to escape in insert more
-imap jk <Esc>
-imap kj <Esc>
+" imap jk <Esc>
+" imap kj <Esc>
 
 " C-a to select all
 nnoremap <C-a> ggVG
