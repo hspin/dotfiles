@@ -451,7 +451,11 @@ nnoremap <leader>s? z=
 " => Misc
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
-noremap <Leader>d mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+noremap <Leader>4 mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Delete without adding to register
+nnoremap <silent> <leader>d "_d
+xnoremap <silent> <leader>d "_d
 
 " markdown set conceal level
 noremap <Leader>m :set conceallevel=2
