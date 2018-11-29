@@ -87,6 +87,10 @@ Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'epilande/vim-react-snippets'
 
+if !empty(glob("$HOME/.vimrc-local"))
+  source $HOME/.vimrc-local
+endif
+
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
