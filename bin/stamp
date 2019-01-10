@@ -2,4 +2,4 @@
 
 DATE=$(date +"%Y%m%d")
 echo $DATE 
-echo -n $DATE | xclip
+#echo -n $DATE | xclip

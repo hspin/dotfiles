@@ -1,5 +1,14 @@
 # vim notes
 
+## insert the same characters across multiple lines
+
+    Move the cursor to the n in name.
+    Enter visual block mode (ctrlv).
+    Press j three times (or 3j).
+    Press I (capital i).
+    Type in vendor_.
+    Press esc.
+
 ## change and surround
 
 with vim surround plugin, change tag, don't close to keep class attr
