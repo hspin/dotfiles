@@ -87,6 +87,7 @@ Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'epilande/vim-es2015-snippets'
 Plug 'epilande/vim-react-snippets'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 if !empty(glob("$HOME/.vimrc-local"))
   source $HOME/.vimrc-local
@@ -675,7 +676,8 @@ nnoremap <leader>t :Tags<CR>
 nnoremap <leader>z :cclose<CR>
 nnoremap <leader>j mO :Ack! "\b<cword>\b" <CR>
 
-nnoremap <Leader>p :E
+nnoremap <Leader>pp :E
+nnoremap <Leader>aa :A
 nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -889,7 +891,7 @@ let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
 " skywind3000/asyncrun.vim
 augroup infosec05
     autocmd!
-    autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+    "autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
 augroup end
 
 " kien/rainbow_parentheses.vim
@@ -906,6 +908,18 @@ let g:UltiSnipsSnippetDir= [$HOME.'/.dotfiles/ysnippets']
 let g:UltiSnipsSnippetDirectories= [$HOME.'/.dotfiles/ysnippets', 'UltiSnips']
 " windows
 " let g:UltiSnipsSnippetDir=[$HOME.'/ysnippets']
+
+" Plug 'prettier/vim-prettier'
+let g:prettier#config#print_width = 120 
+" work with .editorconfig
+let g:prettier#config#config_precedence = 'file-override'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#exec_cmd_async = 1
+nmap <Leader>p <Plug>(Prettier)
+
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functional keys
