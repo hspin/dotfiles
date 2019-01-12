@@ -85,6 +85,7 @@ Plug 'digitaltoad/vim-pug'
 Plug 'wavded/vim-stylus'
 Plug 'w0rp/ale'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'epilande/vim-es2015-snippets'
 Plug 'epilande/vim-react-snippets'
 
 if !empty(glob("$HOME/.vimrc-local"))
