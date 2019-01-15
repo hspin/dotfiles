@@ -15,6 +15,14 @@ with vim surround plugin, change tag, don't close to keep class attr
 
     cstt 
 
+and delete tags
+
+    d s t 	= to delete surrounding tag.
+
+    d s (	= to delete surrounding parentheses ()
+    d s "	= to delete surrounding double quotes ""
+    d s '	= to delete surrounding single quotes ''
+
 change word from anywhere inside the word
 
     caw
