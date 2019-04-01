@@ -439,7 +439,9 @@ nnoremap n nzzzv
 " Search mappings: search will center on the line 
 map N Nzzv
 
-
+" fzf search
+nnoremap <leader>s :Ag 
+nnoremap <leader>/ :BLines<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
