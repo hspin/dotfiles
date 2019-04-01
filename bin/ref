@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+DIR=${HOME}/xgs/gtd/orgmode/zdrive
+
+read -p "Is this a CURRENT project? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  DIR=${HOME}/xgs/gtd/orgmode/zdrive/current
+  echo "Making file in current dir..."
+fi
+
+read -p "Enter REF file name: " ref
+
+newname="${ref// /-}"
+ref=$( echo -n "${newname}" | sed 's/^ *//;s/ *$//' )
+
+if [[ -z "${ref}" ]] ; then
+  echo "No argument supplied"
+  echo "**********"
+  echo "Exiting..."
+  echo "**********"
+  exit
+fi
+
+DATE=$(date +"%Y%m%d")
+
+SHORT=$(pwgen -s -1 | tr A-Z a-z | cut -c 1-6)
+
+FILE="${DATE}-${SHORT}-${ref}.md"
+echo "${FILE}"
+
+LOC="${DIR}/${FILE}"
+
+echo "${LOC}"
+
+if [ -e "${LOC}" ]; then
+    echo "***********"
+    echo "***********"
+    echo "File exists"
+    echo "***********"
+    echo "***********"
+    echo "Exiting...."
+    exit
+fi
+
+#*************
+
+touch "${LOC}"
+echo "${LOC}"
+
+vim "${LOC}"
+

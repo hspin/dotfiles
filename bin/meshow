@@ -10,4 +10,5 @@ tig = show diff press 7 (bind diff)
 chmodr = recursive dir and files 755 and 644
 nmap -sP -PI -PT 192.168.1.1/24 = How many computers are on your network?
 nmap -sS -O -PI -PT 192.168.1.8 = What ports are open on my computers?
+calnew \"5pm 10/30 test appt\"
 "
