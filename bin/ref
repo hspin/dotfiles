@@ -2,6 +2,15 @@
 
 DIR=${HOME}/xgs/gtd/orgmode/zdrive
 
+if [ ! -d "${DIR}" ]; then
+  # Control will enter here if $DIR doesn't exist.
+  echo "no Dir"
+  echo "**********"
+  echo "Exiting..."
+  echo "**********"
+  exit
+fi
+
 read -p "Is this a CURRENT project? " -n 1 -r
 echo    # (optional) move to a new line
 if [[ $REPLY =~ ^[Yy]$ ]]
