@@ -847,7 +847,13 @@ au FileType xml,html,phtml,php,xhtml,js,erb,jsx let b:delimitMate_matchpairs = "
 " mileszs/ack.vim
 nnoremap <leader>a :Gack 
 nnoremap <leader>A :Ack! 
-command! -nargs=* Gack :execute 'Ack! '  . expand('<args>')  '%:p:h'
+
+function! Find_git_root()
+  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+endfunction
+
+command! -nargs=1 Gack execute "Ack! <args> " . Find_git_root()
+"command! -nargs=* Gack :execute 'Ack! '  . expand('<args>')  '%:p:h'
 
 " plasticboy/vim-markdown
 let g:vim_markdown_folding_disabled = 1
@@ -945,4 +951,3 @@ imap <C-c> <CR><Esc>O
 nnoremap <C-c>`` :qa!<cr>
 " alt command mode
 nnoremap <C-c> :
-

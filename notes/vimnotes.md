@@ -1,5 +1,11 @@
 # vim notes
 
+Gack search for word under cursor
+<leader>j 
+use [q  and ]q to navigate
+<leader>z close quicklist window 
+jump back to original file with ( tick capital O)
+
 ## insert the same characters across multiple lines
 
     Move the cursor to the n in name.
