@@ -469,12 +469,6 @@ fi
 #export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 #export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . '
 
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
-if [ -x "$(command -v fasd )" ]; then
-  eval "$(fasd --init auto)"
-fi
-
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -489,12 +483,39 @@ _fzf_compgen_dir() {
   #fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . "$1"
 }
 
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+if [ -x "$(command -v fasd )" ]; then
+  eval "$(fasd --init auto)"
+fi
+
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-unalias z 2>/dev/null
-z() {
-    [ $# -gt 0 ] && fasd_cd -d "$*" && return
+# unalias z 2>/dev/null
+# z() {
+#     [ $# -gt 0 ] && fasd_cd -d "$*" && return
+#     local dir
+#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
+# }
+
+zd() {
     local dir
     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
 }
+
+# View recent f files
+unalias v 2>/dev/null
+v() {
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
+}
+
+# cd into the directory containing a recently used file
+vd() {
+    local dir
+    local file
+    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir"
+}
+
+alias j=zd
 
 # vim: set ft=sh:
