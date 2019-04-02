@@ -8,6 +8,7 @@
     ~/.bcrc: bcrc 
     ~/.dircolors: dircolors
     ~/.gemrc: gemrc
+    ~/.fdignore: fdignore
     ~/.git.scmbrc: git.scmbrc
     ~/.gitignore: gitignore
     ~/.inputrc: inputrc
