@@ -465,25 +465,29 @@ fi
 
 # new for fasd
 
-export FZF_DEFAULT_COMMAND='ag  --hidden --ignore .git --ignore node_modules --ignore bower_components -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . '
-
-# Use fd (https://github.com/sharkdp/fd) instead of the default find
-_fzf_compgen_path() {
-  fd --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . "$1"
-}
-
-# Use fd to generate the list for directory completion
-_fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . "$1"
-}
+#export FZF_DEFAULT_COMMAND='ag  --hidden --ignore .git --ignore node_modules --ignore bower_components -g ""'
+#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+#export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . '
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -x "$(command -v fasd )" ]; then
   eval "$(fasd --init auto)"
 fi
+
+export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+# Use fd (https://github.com/sharkdp/fd) instead of the default find
+_fzf_compgen_path() {
+  fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
+}
+
+# Use fd to generate the list for directory completion
+_fzf_compgen_dir() {
+  fd --type d --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
+  #fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . "$1"
+}
 
 # fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
 unalias z 2>/dev/null

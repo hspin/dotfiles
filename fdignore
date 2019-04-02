@@ -1,0 +1,11 @@
+.DS_Store
+.cache
+.stfolder
+.git
+bower_components
+node_modules
+plugged
+Trash
+vendor
+dist
+build
