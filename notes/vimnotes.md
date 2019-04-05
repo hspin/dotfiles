@@ -1,9 +1,13 @@
 # vim notes
 
 Gack search for word under cursor
-<leader>j 
+
+    <leader>j 
+
 use [q  and ]q to navigate
-<leader>z close quicklist window 
+
+    <leader>z close quicklist window 
+
 jump back to original file with ( tick capital O)
 
 ## insert the same characters across multiple lines
@@ -45,48 +49,59 @@ delete html tag
     cat and cit
     vat and vit
 
-
 ## Close all the buffers
+
     nnoremap <leader>ba :bufdo bd<cr>
 
 ## Let 'tl' toggle between this and the last accessed tab
+
     nnoremap <Leader>tp :exe ##tabn ##.g:lasttab<CR>
 
 ## Opens a new tab with the current buffer's path
 ## for editing files in the same directory
+
     nnoremap <leader>te :tabedit <c-r>=expand(##%:p:h##)<cr>/
 
 ## Switch CWD to the directory of the open buffer
+
     nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 ## Tab: Go to matching element
+
     nnoremap <leader><tab> %
 
 ## Delete trailing white space on save
+
     nnoremap <leader>ws :call CleanExtraSpaces()<CR>
 
 ## Ctrl-sr: Easier (s)earch and (r)eplace
+
     nnoremap <leader>r :%s/<c-r><c-w>//g<left><left><left>
 
 ## => Spell checking
 ## Pressing ,ss will toggle and untoggle spell checking
+
     nnoremap <leader>ss :setlocal spell!<cr>
 
 ## Shortcuts using <leader>
+
     nnoremap <leader>sn ]s
     nnoremap <leader>sp [s
     nnoremap <leader>sa zg
     nnoremap <leader>s? z=
 
 ## Remove the Windows ^M - when the encodings gets messed up
+
     noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 ## Toggle paste mode on and off
+
     nnoremap <leader>pp :setlocal paste!<cr>
 
     nnoremap <leader>- :<C-U>RangerChooser<CR>
 
 ## fast whole file alignment
+
     nnoremap <leader>= gg=G``
 
 ## Ctrl-r: Easier search and replace
