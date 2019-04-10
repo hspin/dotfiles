@@ -656,10 +656,11 @@ augroup END
 " Miscellaneous file types.
 augroup infosec04
     autocmd!
-    autocmd BufNewFile,BufRead .babelrc set filetype=javascript
-    autocmd BufNewFile,BufRead .eslintrc,.reduxrc set filetype=json
+    autocmd BufNewFile,BufRead *.babelrc set filetype=javascript
+    autocmd BufNewFile,BufRead *.eslintrc,.reduxrc set filetype=json
     autocmd BufNewFile,BufRead gitconfig set filetype=gitconfig
-    autocmd BufNewFile,BufRead .prettierrc set filetype=yaml
+    autocmd BufNewFile,BufRead *.prettierrc set filetype=yaml
+    autocmd BufNewFile,BufRead *.svelte set filetype=html syntax=html
 augroup end
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
