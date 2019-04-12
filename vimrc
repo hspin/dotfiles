@@ -679,8 +679,11 @@ nnoremap <leader>t :Tags<CR>
 nnoremap <leader>z :cclose<CR>
 nnoremap <leader>j mO :Ack! "\b<cword>\b" <CR>
 
-nnoremap <Leader>pp :E
-nnoremap <Leader>aa :A
+" tpope/vim-projectionist
+nnoremap <Leader>pp :Eview 
+nnoremap <Leader>aa :A<CR>
+nnoremap <Leader>av :AV<CR>
+
 nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
