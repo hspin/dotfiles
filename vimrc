@@ -62,6 +62,9 @@ Plug 'elzr/vim-json'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lambdalisue/vim-foldround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+Plug 'kana/vim-arpeggio'
 
 " Development
 Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
@@ -953,5 +956,14 @@ nnoremap <leader>v f"l
 imap <C-c> <CR><Esc>O
 " quick exit no save
 nnoremap <C-c>`` :qa!<cr>
-" alt command mode
-nnoremap <C-c> :
+" vimux
+" Prompt for a command to run
+nnoremap <leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
+
+call arpeggio#load()
+Arpeggio inoremap jk <Esc>
+"Arpeggio nmap vp :VimuxPromptCommand<CR>
+Arpeggio nnoremap vl :VimuxRunLastCommand<CR>
+Arpeggio nnoremap gh :update<CR>
