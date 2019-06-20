@@ -44,6 +44,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'Valloric/MatchTagAlways'
 Plug 'alvan/vim-closetag'
 Plug 'tomasr/molokai'
+Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
@@ -207,7 +208,9 @@ if has("gui_macvim")
 endif
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+"set foldcolumn=1
+set foldcolumn=0
+set numberwidth=3
 
 " tmux
 if !$TMUX | set t_ut= | endif
@@ -227,13 +230,16 @@ set t_Co=256
 set background=dark
 
 try
-    colorscheme molokai
+    "colorscheme molokai
+    colorscheme sublimemonokai
 catch
     colorscheme desert
 endtry
 
+hi Normal ctermbg=none
+
 " using Source Code Pro
-set guifont=Source\ Code\ Pro:h14
+" set guifont=Source\ Code\ Pro:h14
 
 " Set extra options when running in GUI mode
 if has("gui_running")
