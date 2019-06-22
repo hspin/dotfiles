@@ -147,7 +147,8 @@ alias k="less"
 alias lok="i3lock"
 alias rm="trash-put -v"
 alias tp="trash-put"
-alias del="/bin/rm -Ir"
+alias del="/bin/rm"
+alias vim="HSDVIM=dev vim"
 
 #tmuxinator shortcuts
 alias tml="tmux list-sessions"
