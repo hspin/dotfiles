@@ -487,36 +487,14 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -x "$(command -v fasd )" ]; then
-  eval "$(fasd --init auto)"
+  eval "$(fasd --init auto posix-alias bash-hook)"
 fi
 
-# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-# unalias z 2>/dev/null
-# z() {
-#     [ $# -gt 0 ] && fasd_cd -d "$*" && return
-#     local dir
-#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-# }
-
-zd() {
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
-
 # View recent f files
-unalias v 2>/dev/null
-v() {
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
-}
-
-# cd into the directory containing a recently used file
-vd() {
-    local dir
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir"
-}
-
-alias j=zd
+# unalias v 2>/dev/null
+# v() {
+#     local file
+#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
+# }
 
 # vim: set ft=sh:
