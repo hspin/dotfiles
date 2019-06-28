@@ -66,6 +66,7 @@ Plug 'lambdalisue/vim-foldround'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'benmills/vimux'
 Plug 'kana/vim-arpeggio'
+Plug 'jamessan/vim-gnupg'
 
 " Development
 Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
