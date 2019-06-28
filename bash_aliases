@@ -100,6 +100,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
 alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 alias dot="ls -ldF .[a-zA-Z0-9]* --color=auto"
+alias lst="tree -L 2"
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -113,7 +114,30 @@ alias tarc="tar cvzf"
 # Quicker navigation
 alias ..="cd .."
 alias ...="cd ../.."
-alias ....="cd ../../.."
+
+# Go up X directories (default 1)
+up() {
+    if [[ "$#" -ne 1 ]]; then
+        cd ..
+    elif ! [[ $1 =~ '^[0-9]+$' ]]; then
+        echo "Error: up should be called with the number of directories to go up. The default is 1."
+    else
+        local d=""
+        limit=$1
+        for ((i=1 ; i <= limit ; i++))
+        do
+            d=$d/..
+        done
+        d=$(echo $d | sed 's/^\///')
+        cd $d
+    fi
+}
+
+# Go up to project root
+jr() {
+    cd "$(git rev-parse --show-toplevel)"
+}
+
 
 alias nsl='netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 '
 alias dusk='du -s -k -c * | sort -rn'
@@ -487,7 +511,100 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -x "$(command -v fasd )" ]; then
+  
   eval "$(fasd --init auto posix-alias bash-hook)"
+
+# ===============
+# helpers
+# ===============
+
+    function _fzf() {
+        fzf +m
+    }
+
+    function _best_match() {
+        local lines="$1"
+        shift
+        echo "$lines" \
+            | fzf --filter="$*" \
+            | head -n1
+    }
+
+    function _list_files() {
+        ag --hidden --ignore .git -g "${1:-}"
+    }
+
+    function _list_folders() {
+        _list_files \
+            | xargs -n1 dirname \
+            | sort -u
+    }
+
+    function _action_from_fasd() {
+    local fasd_args="$1"
+    local cmd="$2"
+    local selection=$(fasd "$fasd_args" \
+        | awk '{print $2}' \
+        | _fzf) \
+        && [ -n "$selection" ] \
+        && "$cmd" "$selection"
+    }
+
+    function _cd_file() {
+        cd "$(dirname "$1")"
+    }
+
+    function _jj() {
+        local cmd="$1"
+        local lines="$2"
+        shift 2
+        if [ $# -gt 0 ]; then
+            "$cmd" "$(_best_match "$lines" "$@")" 
+        else
+            local selection=$(echo "$lines" | _fzf) \
+                && [ -n "$selection" ] \
+                && "$cmd" "$selection"
+        fi
+    }
+
+# ===============
+# jumping
+# ===============
+
+    j() { 
+        [ $# -gt 0 ] && \
+            fasd_cd -d "$@" \
+            || _action_from_fasd -d "cd" 
+    }
+
+    jj() { 
+        _jj cd "$(_list_folders)" "$@" 
+    }
+
+    jjf() { 
+        _jj _cd_file "$(_list_files)" "$@" 
+    }
+
+    jv() { 
+        [ $# -gt 0 ] && \
+            fasd -f -e vim "$@" \
+            || _action_from_fasd -f vim 
+    }
+
+    jjv() { 
+        _jj vim "$(_list_files)" "$@" 
+    }
+
+    js() { 
+        [ $# -gt 0 ] && \
+            fasd -f -e subl "$@" \
+            || _action_from_fasd -f subl 
+    }
+
+    jjs() {
+        _jj subl "$(_list_files)" "$@" 
+    }
+
 fi
 
 # View recent f files
