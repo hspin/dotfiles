@@ -116,20 +116,17 @@ alias ..="cd .."
 alias ...="cd ../.."
 
 # Go up X directories (default 1)
-up() {
-    if [[ "$#" -ne 1 ]]; then
-        cd ..
-    elif ! [[ $1 =~ '^[0-9]+$' ]]; then
-        echo "Error: up should be called with the number of directories to go up. The default is 1."
-    else
-        local d=""
-        limit=$1
-        for ((i=1 ; i <= limit ; i++))
-        do
-            d=$d/..
-        done
-        d=$(echo $d | sed 's/^\///')
-        cd $d
+function up() {
+    UP=$1
+
+    if [[ $UP =~ ^[\-0-9]+$ ]]; then
+        if ((UP<0)); then
+            UP=${UP#-}
+            UP=$((UP+1))
+            cd $(echo $PWD | cut -d/ -f1-${UP})
+        else
+            cd $(printf "%0.s../" $(seq 1 ${UP}));
+        fi
     fi
 }
 
@@ -593,16 +590,6 @@ if [ -x "$(command -v fasd )" ]; then
 
     jjv() { 
         _jj vim "$(_list_files)" "$@" 
-    }
-
-    js() { 
-        [ $# -gt 0 ] && \
-            fasd -f -e subl "$@" \
-            || _action_from_fasd -f subl 
-    }
-
-    jjs() {
-        _jj subl "$(_list_files)" "$@" 
     }
 
 fi
