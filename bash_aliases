@@ -206,18 +206,17 @@ pk-search () {
 }
 
 fzf-linuxlib-widget() {
-  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
-  printf '%s\n' "${command}"
-  history -s "${command} "
-  # eval ${command}
+    if [ -d "$HOME"/.xgshuman ]; then
+        local file=$(cat /home/ubuntu/.xgshuman/readybin/commands.txt | fzf --no-multi)
+        perl -e 'require "sys/ioctl.ph"; ioctl(STDIN, &TIOCSTI, $_) for split "", join " ", @ARGV, ""' "${file}"
+    fi
 }
 
 fzf-linuxlib-widget-enter() {
-  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
-  # RBUFFER=${RBUFFER}${command}
-  printf '%s\n' "${command}"
-  history -s "${command} "
-  eval ${command}
+    if [ -d "$HOME"/.xgshuman ]; then
+        local file=$(cat /home/ubuntu/.xgshuman/readybin/commands.txt | fzf --height 25% --no-multi)
+        perl -e 'require "sys/ioctl.ph"; ioctl(STDIN, &TIOCSTI, $_) for split "", join " ", @ARGV, "\n"' "${file}"
+    fi
 }
 
 # -------------------------------------------------------------------
@@ -226,18 +225,19 @@ fzf-linuxlib-widget-enter() {
 set -o emacs
 # Alt-e (or Esc e) will toggle between modes.
 bind '"\ee": vi-editing-mode'
-bind -x '"\eb":"fzf-linuxlib-widget-enter"'
-bind -x '"\eB":"fzf-linuxlib-widget"'
+bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
+bind -x '"\C-o":"fzf-linuxlib-widget"'
 
 set -o vi
-bind -x '"\en":"fzf-linuxlib-widget-enter"'
-bind -x '"\eN":"fzf-linuxlib-widget"'
+bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
+bind -x '"\C-o":"fzf-linuxlib-widget"'
 
 # Alt-e (or Esc e) will toggle between modes.
 bind '"\ee": emacs-editing-mode'
 bind '";;":"\e"'
 bind '"\e."':yank-last-arg
 bind -m vi-insert "\C-l":clear-screen
+bind -x '"\C-b":"clear"'
 
 #}}}
 
@@ -476,9 +476,12 @@ if [ -f ~/.bash-local ]; then
     source ~/.bash-local
 fi
 
+if [ -d "$HOME"/.xgshuman ]; then
+    source /home/ubuntu/.xgshuman/readybin/full-commands.sh
+fi
+
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # new for fasd
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
@@ -583,6 +586,8 @@ if [ -x "$(command -v fasd )" ]; then
     }
 
 fi
+
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # View recent f files
 # unalias v 2>/dev/null
