@@ -201,10 +201,6 @@ alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-forma
 alias pk-show='apt-cache show'
 alias gdiff='git diff --no-ext-diff'
 
-bz () {
-  [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-}
-
 pk-search () {
   apt-cache search $1 | sort | egrep "${1}|$"
 }
@@ -232,7 +228,6 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\eb":"fzf-linuxlib-widget-enter"'
 bind -x '"\eB":"fzf-linuxlib-widget"'
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\en":"fzf-linuxlib-widget-enter"'
@@ -486,11 +481,6 @@ fi
 [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # new for fasd
-
-#export FZF_DEFAULT_COMMAND='ag  --hidden --ignore .git --ignore node_modules --ignore bower_components -g ""'
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . '
-
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
