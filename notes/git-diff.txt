@@ -1,0 +1,6 @@
+
+
+to skipp vimdiff - wrapper
+
+git diff --no-ext-diff --color | diff-so-fancy | less --tabs=4 -RFX
+

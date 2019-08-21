@@ -517,5 +517,8 @@ vd() {
 }
 
 alias j=zd
+alias vim="HSDVIM=dev vim"
+alias vi=""
+alias na="vim"
 
 # vim: set ft=sh:

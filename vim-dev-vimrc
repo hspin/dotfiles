@@ -1,0 +1,105 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Plugins - development
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" maralla/completor.vim
+let g:completor_php_omni_trigger = '([$\w]{2,}|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
+imap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+smap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
+imap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+smap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
+imap <expr><CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+smap <expr><CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+" SirVer/ultisnips 
+" let g:UltiSnipsExpandTrigger="<tab>"                                            
+" let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
+" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"let g:UltiSnipsExpandTrigger="<C-j>"
+let g:UltiSnipsExpandTrigger="<C-l>"
+
+" xolox/vim-session
+let g:session_autosave = 'no'
+
+" mattn/emmet-vim
+let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings = {'javascript.jsx' : { 'extends' : 'jsx', }, }
+
+" w0rp/ale
+let g:ale_sign_error = '●' " Less aggressive than the default '>>'
+let g:ale_sign_warning = '.'
+let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
+
+" skywind3000/asyncrun.vim
+augroup infosec05
+    autocmd!
+    "autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
+augroup end
+
+" kien/rainbow_parentheses.vim
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+" mxw/vim-jsx
+let g:jsx_ext_required = 0
+
+" linux
+let g:UltiSnipsSnippetDir= [$HOME.'/.dotfiles/ysnippets']
+let g:UltiSnipsSnippetDirectories= [$HOME.'/.dotfiles/ysnippets', 'UltiSnips']
+" windows
+" let g:UltiSnipsSnippetDir=[$HOME.'/ysnippets']
+
+" Plug 'prettier/vim-prettier'
+let g:prettier#config#print_width = 120 
+" work with .editorconfig
+let g:prettier#config#config_precedence = 'file-override'
+let g:prettier#config#single_quote = 'true'
+let g:prettier#exec_cmd_async = 1
+nmap <Leader>p <Plug>(Prettier)
+
+let g:prettier#quickfix_enabled = 0
+let g:prettier#autoformat = 0
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Functional keys
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+nnoremap <leader>2 :RainbowParenthesesToggle<CR>
+nnoremap <leader>1 :TagbarToggle<CR>
+nnoremap <leader>i :IndentLinesToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => WORKING
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" html edits - move to after tag > INSERT
+nnoremap <leader>f f>li
+" html edits - move to inside quotes
+nnoremap <leader>v f"l
+" js edits - curly brackets open and position
+imap <C-c> <CR><Esc>O
+" quick exit no save
+nnoremap <C-c>`` :qa!<cr>
+" alt command mode
+nnoremap <C-c> :
+
+let g:tagbar_type_javascript = {
+      \ 'ctagstype': 'javascript',
+      \ 'kinds': [
+      \ 'A:arrays',
+      \ 'P:properties',
+      \ 'T:tags',
+      \ 'O:objects',
+      \ 'G:generator functions',
+      \ 'F:functions',
+      \ 'C:constructors/classes',
+      \ 'M:methods',
+      \ 'V:variables',
+      \ 'I:imports',
+      \ 'E:exports',
+      \ 'S:styled components'
+      \ ]}
+

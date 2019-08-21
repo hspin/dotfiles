@@ -1,0 +1,30 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Development Plugins
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Development
+Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
+Plug 'SirVer/ultisnips' 
+Plug 'honza/vim-snippets'
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-projectionist'
+Plug 'majutsushi/tagbar'
+Plug 'elzr/vim-json'
+Plug 'ternjs/tern_for_vim', {'do':'npm install '} 
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'airblade/vim-rooter'
+Plug 'unblevable/quick-scope'
+Plug 'xolox/vim-misc'
+Plug 'xolox/vim-session'
+Plug 'Yggdroot/indentLine'
+Plug 'mattn/emmet-vim'
+Plug 'pangloss/vim-javascript'
+Plug 'mxw/vim-jsx'
+Plug 'digitaltoad/vim-pug'
+Plug 'wavded/vim-stylus'
+Plug 'w0rp/ale'
+Plug 'skywind3000/asyncrun.vim'
+Plug 'epilande/vim-es2015-snippets'
+Plug 'epilande/vim-react-snippets'
+Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+

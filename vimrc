@@ -33,9 +33,10 @@ set nocompatible
 filetype off
 
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"
 call plug#begin()
 
-" Normal
+" Normal -STD
 Plug 'itchyny/lightline.vim'
 Plug 'jlanzarotta/bufexplorer'
 Plug 'justinmk/vim-dirvish'
@@ -49,7 +50,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
 Plug 'kshenoy/vim-signature'
 Plug 'Raimondi/delimitMate'
-Plug 'tomtom/tcomment_vim'
+" Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'rhysd/clever-f.vim'
@@ -58,39 +59,27 @@ Plug 'junegunn/vim-peekaboo'
 Plug 'terryma/vim-expand-region'
 Plug 'ledger/vim-ledger'
 Plug 'vimoutliner/vimoutliner'
-Plug 'elzr/vim-json'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lambdalisue/vim-foldround'
 
-" Development
-Plug 'maralla/completor.vim', {'do': 'cd pythonx/completers/javascript && npm install'}
-Plug 'SirVer/ultisnips' 
-Plug 'honza/vim-snippets'
-Plug 'junegunn/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-projectionist'
-Plug 'majutsushi/tagbar'
-Plug 'ternjs/tern_for_vim', {'do':'npm install '} 
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'airblade/vim-rooter'
-Plug 'unblevable/quick-scope'
-Plug 'xolox/vim-misc'
-Plug 'xolox/vim-session'
-Plug 'Yggdroot/indentLine'
-Plug 'mattn/emmet-vim'
-Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
-Plug 'digitaltoad/vim-pug'
-Plug 'wavded/vim-stylus'
-Plug 'w0rp/ale'
-Plug 'skywind3000/asyncrun.vim'
-Plug 'epilande/vim-es2015-snippets'
-Plug 'epilande/vim-react-snippets'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
+Plug 'svermeulen/vim-cutlass'
+Plug 'svermeulen/vim-yoink'
+Plug 'svermeulen/vim-subversive'
 
-if !empty(glob("$HOME/.vimrc-local"))
-  source $HOME/.vimrc-local
+Plug 'tpope/vim-commentary'
+
+
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-function'
+Plug 'jasonlong/vim-textobj-css'
+Plug 'kana/vim-textobj-line'
+Plug 'haya14busa/vim-textobj-function-syntax'
+Plug 'lfilho/cosco.vim'
+
+if $HSDVIM == 'dev'
+  " load DEVELOPMENT vimrc
+  source $HOME/.dotfiles/vim-dev
 endif
 
 call plug#end()
@@ -583,19 +572,22 @@ nnoremap <leader>- :<C-U>RangerChooser<CR>
 
 " Auto semi colon 
 " If there isn't one, append a semi colon to the end of the current line.
-function s:appendSemiColon()
-    if getline('.') !~ ';$'
-        let original_cursor_position = getpos('.')
-        exec("s/$/;/")
-        call setpos('.', original_cursor_position)
-    endif
-endfunction
+" function s:appendSemiColon()
+"     if getline('.') !~ ';$'
+"         let original_cursor_position = getpos('.')
+"         exec("s/$/;/")
+"         call setpos('.', original_cursor_position)
+"     endif
+" endfunction
 
 " For programming languages using a semi colon at the end of statement.
-augroup infosec03
-    autocmd!
-    autocmd FileType c,cpp,css,java,javascript,perl,php nmap <silent><leader>\ :call <SID>appendSemiColon()<cr>
-augroup end
+" augroup infosec03
+"     autocmd!
+"     autocmd FileType c,cpp,css,java,javascript,perl,php nmap <silent><leader>\ :call <SID>appendSemiColon()<cr>
+" augroup end
+
+" inoremap ;; <C-o>A;
+" nnoremap <leader>\ :normal A;<CR>
 
 " Append modeline after last line in buffer.
 " Use substitute() instead of printf() to handle '%%s' modeline in LaTeX
@@ -672,7 +664,7 @@ nnoremap <leader>c :close<CR>
 nnoremap <leader>o :BufExplorer<CR>
 nnoremap <silent> <Leader>x :Bdelete<CR>
 
-nnoremap <c-p> :Files<CR>
+"nnoremap <c-p> :Files<CR>
 nnoremap <bar> :Buffers<CR>
 nnoremap \ :Lines<CR>
 nnoremap <leader>t :Tags<CR>
@@ -712,9 +704,9 @@ nnoremap <silent> <Leader>q :qa<CR>
 vmap s S
 
 " Use local vimrc if available {
-if filereadable($HOME.'/.vimrc-local')
-  source $HOME/.vimrc-local
-endif
+"if filereadable($HOME.'/.vimrc-local')
+"  source $HOME/.vimrc-local
+"endif
 
 " nice copy paste functionality
 vnoremap <silent> y y`]
@@ -872,74 +864,10 @@ nmap <Leader>fb <Plug>(foldround-backward)
 " => Plugins - development
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" maralla/completor.vim
-let g:completor_php_omni_trigger = '([$\w]{2,}|use\s*|->[$\w]*|::[$\w]*|implements\s*|extends\s*|class\s+[$\w]+|new\s*)$'
-imap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
-smap <expr><TAB> pumvisible() ? "\<C-N>" : "\<TAB>"
-imap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
-smap <expr><S-TAB> pumvisible() ? "\<C-P>" : "\<S-TAB>"
-imap <expr><CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-smap <expr><CR> pumvisible() ? "\<C-Y>" : "\<CR>"
-
-" SirVer/ultisnips 
-" let g:UltiSnipsExpandTrigger="<tab>"                                            
-" let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsExpandTrigger="<C-l>"
-
-" xolox/vim-session
-let g:session_autosave = 'no'
-
-" mattn/emmet-vim
-let g:user_emmet_leader_key='<Tab>'
-let g:user_emmet_settings = {'javascript.jsx' : { 'extends' : 'jsx', }, }
-
-" w0rp/ale
-let g:ale_sign_error = '●' " Less aggressive than the default '>>'
-let g:ale_sign_warning = '.'
-let g:ale_lint_on_enter = 0 " Less distracting when opening a new file
-
-" skywind3000/asyncrun.vim
-augroup infosec05
-    autocmd!
-    "autocmd BufWritePost *.js AsyncRun -post=checktime ./node_modules/.bin/eslint --fix %
-augroup end
-
-" kien/rainbow_parentheses.vim
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-
-" mxw/vim-jsx
-let g:jsx_ext_required = 0
-
-" linux
-let g:UltiSnipsSnippetDir= [$HOME.'/.dotfiles/ysnippets']
-let g:UltiSnipsSnippetDirectories= [$HOME.'/.dotfiles/ysnippets', 'UltiSnips']
-" windows
-" let g:UltiSnipsSnippetDir=[$HOME.'/ysnippets']
-
-" Plug 'prettier/vim-prettier'
-let g:prettier#config#print_width = 120 
-" work with .editorconfig
-let g:prettier#config#config_precedence = 'file-override'
-let g:prettier#config#single_quote = 'true'
-let g:prettier#exec_cmd_async = 1
-nmap <Leader>p <Plug>(Prettier)
-
-let g:prettier#quickfix_enabled = 0
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Functional keys
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-nnoremap <leader>2 :RainbowParenthesesToggle<CR>
-nnoremap <leader>1 :TagbarToggle<CR>
-nnoremap <leader>i :IndentLinesToggle<CR>
+if $HSDVIM == 'dev'
+  " load DEVELOPMENT vimrc
+  source $HOME/.dotfiles/vim-dev-vimrc
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => WORKING
@@ -955,3 +883,58 @@ imap <C-c> <CR><Esc>O
 nnoremap <C-c>`` :qa!<cr>
 " alt command mode
 nnoremap <C-c> :
+
+
+
+
+
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
+
+" alt mapping for 'add mark' instead of m
+nnoremap gm m
+
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap <expr> <c-p> yoink#isSwapping() ? '<plug>(YoinkPostPasteSwapForward)' : ':FZF'
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+
+nmap y <plug>(YoinkYankPreserveCursorPosition)
+xmap y <plug>(YoinkYankPreserveCursorPosition)
+
+
+let g:yoinkIncludeDeleteOperations = 1
+let g:yoinkSyncNumberedRegisters = 1
+
+nnoremap <c-o> :Files<CR>
+
+" s for substitute
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+nmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>crr <plug>(SubversiveSubstituteWordRangeConfirm)
+
+" ie = inner entire buffer
+onoremap ie :exec "normal! ggVG"<cr>
+
+" iv = current viewable text in the buffer
+onoremap iv :exec "normal! HVL"<cr>
+
+xmap s <plug>(SubversiveSubstitute)
+xmap p <plug>(SubversiveSubstitute)
+xmap P <plug>(SubversiveSubstitute)
+
+
+autocmd FileType javascript,css,jsx nmap <silent> <Leader>\ <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css,jsx imap <silent> <Leader>\ <c-o><Plug>(cosco-commaOrSemiColon)
+let g:cosco_filetype_whitelist = ['css', 'javascript', 'jsx']
