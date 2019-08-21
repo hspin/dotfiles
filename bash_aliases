@@ -100,6 +100,7 @@ alias lt='ls -ltr'         #  Sort by date, most recent last.
 alias lc='ls -ltcr'        #  Sort by/show change time,most recent last.
 alias lu='ls -ltur'        #  Sort by/show access time,most recent last.
 alias dot="ls -ldF .[a-zA-Z0-9]* --color=auto"
+alias lst="tree -L 2"
 
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -113,7 +114,27 @@ alias tarc="tar cvzf"
 # Quicker navigation
 alias ..="cd .."
 alias ...="cd ../.."
-alias ....="cd ../../.."
+
+# Go up X directories (default 1)
+function up() {
+    UP=$1
+
+    if [[ $UP =~ ^[\-0-9]+$ ]]; then
+        if ((UP<0)); then
+            UP=${UP#-}
+            UP=$((UP+1))
+            cd $(echo $PWD | cut -d/ -f1-${UP})
+        else
+            cd $(printf "%0.s../" $(seq 1 ${UP}));
+        fi
+    fi
+}
+
+# Go up to project root
+jr() {
+    cd "$(git rev-parse --show-toplevel)"
+}
+
 
 alias nsl='netstat -alnp --protocol=inet | grep -v CLOSE_WAIT | cut -c-6,21-94 '
 alias dusk='du -s -k -c * | sort -rn'
@@ -147,7 +168,7 @@ alias k="less"
 alias lok="i3lock"
 alias rm="trash-put -v"
 alias tp="trash-put"
-alias del="/bin/rm -Ir"
+alias del="/bin/rm"
 
 #tmuxinator shortcuts
 alias tml="tmux list-sessions"
@@ -179,27 +200,22 @@ alias yt3='cd $HOME/incoming; youtube-dl --verbose --extract-audio --audio-forma
 alias pk-show='apt-cache show'
 alias gdiff='git diff --no-ext-diff'
 
-bz () {
-  [ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
-}
-
 pk-search () {
   apt-cache search $1 | sort | egrep "${1}|$"
 }
 
 fzf-linuxlib-widget() {
-  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
-  printf '%s\n' "${command}"
-  history -s "${command} "
-  # eval ${command}
+    if [ -d "$HOME"/.xgshuman ]; then
+        local file=$(cat /home/ubuntu/.xgshuman/readybin/commands.txt | fzf --no-multi)
+        perl -e 'require "sys/ioctl.ph"; ioctl(STDIN, &TIOCSTI, $_) for split "", join " ", @ARGV, ""' "${file}"
+    fi
 }
 
 fzf-linuxlib-widget-enter() {
-  command=`cat ~/code/verbosecommand/readybin/commands.txt | fzf --height 25% --print0`
-  # RBUFFER=${RBUFFER}${command}
-  printf '%s\n' "${command}"
-  history -s "${command} "
-  eval ${command}
+    if [ -d "$HOME"/.xgshuman ]; then
+        local file=$(cat /home/ubuntu/.xgshuman/readybin/commands.txt | fzf --height 25% --no-multi)
+        perl -e 'require "sys/ioctl.ph"; ioctl(STDIN, &TIOCSTI, $_) for split "", join " ", @ARGV, "\n"' "${file}"
+    fi
 }
 
 # -------------------------------------------------------------------
@@ -208,19 +224,19 @@ fzf-linuxlib-widget-enter() {
 set -o emacs
 # Alt-e (or Esc e) will toggle between modes.
 bind '"\ee": vi-editing-mode'
-bind -x '"\eb":"fzf-linuxlib-widget-enter"'
-bind -x '"\eB":"fzf-linuxlib-widget"'
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
+bind -x '"\C-o":"fzf-linuxlib-widget"'
 
 set -o vi
-bind -x '"\en":"fzf-linuxlib-widget-enter"'
-bind -x '"\eN":"fzf-linuxlib-widget"'
+bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
+bind -x '"\C-o":"fzf-linuxlib-widget"'
 
 # Alt-e (or Esc e) will toggle between modes.
 bind '"\ee": emacs-editing-mode'
 bind '";;":"\e"'
 bind '"\e."':yank-last-arg
 bind -m vi-insert "\C-l":clear-screen
+bind -x '"\C-b":"clear"'
 
 #}}}
 
@@ -459,16 +475,14 @@ if [ -f ~/.bash-local ]; then
     source ~/.bash-local
 fi
 
+if [ -d "$HOME"/.xgshuman ]; then
+    source /home/ubuntu/.xgshuman/readybin/full-commands.sh
+fi
+
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 # new for fasd
-
-#export FZF_DEFAULT_COMMAND='ag  --hidden --ignore .git --ignore node_modules --ignore bower_components -g ""'
-#export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-#export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . '
-
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
@@ -486,39 +500,104 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -x "$(command -v fasd )" ]; then
-  eval "$(fasd --init auto)"
+  
+  eval "$(fasd --init auto posix-alias bash-hook)"
+
+# ===============
+# helpers
+# ===============
+
+    function _fzf() {
+        fzf +m
+    }
+
+    function _best_match() {
+        local lines="$1"
+        shift
+        echo "$lines" \
+            | fzf --filter="$*" \
+            | head -n1
+    }
+
+    function _list_files() {
+        ag --hidden --ignore .git -g "${1:-}"
+    }
+
+    function _list_folders() {
+        _list_files \
+            | xargs -n1 dirname \
+            | sort -u
+    }
+
+    function _action_from_fasd() {
+    local fasd_args="$1"
+    local cmd="$2"
+    local selection=$(fasd "$fasd_args" \
+        | awk '{print $2}' \
+        | _fzf) \
+        && [ -n "$selection" ] \
+        && "$cmd" "$selection"
+    }
+
+    function _cd_file() {
+        cd "$(dirname "$1")"
+    }
+
+    function _jj() {
+        local cmd="$1"
+        local lines="$2"
+        shift 2
+        if [ $# -gt 0 ]; then
+            "$cmd" "$(_best_match "$lines" "$@")" 
+        else
+            local selection=$(echo "$lines" | _fzf) \
+                && [ -n "$selection" ] \
+                && "$cmd" "$selection"
+        fi
+    }
+
+# ===============
+# jumping
+# ===============
+
+    j() { 
+        [ $# -gt 0 ] && \
+            fasd_cd -d "$@" \
+            || _action_from_fasd -d "cd" 
+    }
+
+    jj() { 
+        _jj cd "$(_list_folders)" "$@" 
+    }
+
+    jjf() { 
+        _jj _cd_file "$(_list_files)" "$@" 
+    }
+
+    jv() {
+        [ $# -gt 0 ] && \
+            fasd -f -e vim "$@" \
+            || _action_from_fasd -f vim 
+    }
+
+    jjv() { 
+        _jj vim "$(_list_files)" "$@" 
+    }
+
 fi
 
-# fasd & fzf change directory - jump using `fasd` if given argument, filter output of `fasd` using `fzf` else
-# unalias z 2>/dev/null
-# z() {
-#     [ $# -gt 0 ] && fasd_cd -d "$*" && return
-#     local dir
-#     dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-# }
+[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
-zd() {
-    local dir
-    dir="$(fasd -Rdl "$1" | fzf -1 -0 --no-sort +m)" && cd "${dir}" || return 1
-}
+#alias j=zd
+alias vim="HSDVIM=dev vim"
+alias vi="try_na_editor"
+alias na="/usr/bin/vi"
 
 # View recent f files
-unalias v 2>/dev/null
-v() {
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
-}
-
-# cd into the directory containing a recently used file
-vd() {
-    local dir
-    local file
-    file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && dir=$(dirname "$file") && cd "$dir"
-}
-
-alias j=zd
-alias vim="HSDVIM=dev vim"
-alias vi=""
-alias na="vim"
+# unalias v 2>/dev/null
+# v() {
+#     local file
+#     file="$(fasd -Rfl "$1" | fzf -1 -0 --no-sort +m)" && $EDITOR "${file}" || return 1
+# }
 
 # vim: set ft=sh:

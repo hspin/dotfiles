@@ -45,6 +45,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'Valloric/MatchTagAlways'
 Plug 'alvan/vim-closetag'
 Plug 'tomasr/molokai'
+Plug 'ErichDonGubler/vim-sublime-monokai'
 Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
@@ -62,20 +63,24 @@ Plug 'vimoutliner/vimoutliner'
 Plug 'mtth/scratch.vim'
 Plug 'plasticboy/vim-markdown'
 Plug 'lambdalisue/vim-foldround'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'benmills/vimux'
+Plug 'kana/vim-arpeggio'
+Plug 'jamessan/vim-gnupg'
 
 Plug 'svermeulen/vim-cutlass'
 Plug 'svermeulen/vim-yoink'
 Plug 'svermeulen/vim-subversive'
 
 Plug 'tpope/vim-commentary'
-
+Plug 'lfilho/cosco.vim'
 
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-function'
 Plug 'jasonlong/vim-textobj-css'
 Plug 'kana/vim-textobj-line'
 Plug 'haya14busa/vim-textobj-function-syntax'
-Plug 'lfilho/cosco.vim'
+
 
 if $HSDVIM == 'dev'
   " load DEVELOPMENT vimrc
@@ -196,7 +201,9 @@ if has("gui_macvim")
 endif
 
 " Add a bit extra margin to the left
-set foldcolumn=1
+"set foldcolumn=1
+set foldcolumn=0
+set numberwidth=3
 
 " tmux
 if !$TMUX | set t_ut= | endif
@@ -216,13 +223,16 @@ set t_Co=256
 set background=dark
 
 try
-    colorscheme molokai
+    "colorscheme molokai
+    colorscheme sublimemonokai
 catch
     colorscheme desert
 endtry
 
+hi Normal ctermbg=none
+
 " using Source Code Pro
-set guifont=Source\ Code\ Pro:h14
+" set guifont=Source\ Code\ Pro:h14
 
 " Set extra options when running in GUI mode
 if has("gui_running")
@@ -860,6 +870,83 @@ let g:vim_markdown_folding_disabled = 1
 nmap <Leader>ff <Plug>(foldround-forward)
 nmap <Leader>fb <Plug>(foldround-backward)
 
+" **********
+" * New 2019
+" **********
+" svermeulen/vim-cutlass
+" ********
+nnoremap x d
+xnoremap x d
+
+nnoremap xx dd
+nnoremap X D
+
+" ********
+" svermeulen/vim-yoink
+" ********
+nmap <c-n> <plug>(YoinkPostPasteSwapBack)
+"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
+nmap <expr> <c-p> yoink#isSwapping() ? '<plug>(YoinkPostPasteSwapForward)' : ':FZF'
+
+nmap p <plug>(YoinkPaste_p)
+nmap P <plug>(YoinkPaste_P)
+
+nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
+nmap y <plug>(YoinkYankPreserveCursorPosition)
+xmap y <plug>(YoinkYankPreserveCursorPosition)
+
+let g:yoinkIncludeDeleteOperations = 1
+let g:yoinkSyncNumberedRegisters = 1
+
+" ********
+" svermeulen/vim-subversive
+" ********
+" s for substitute
+nmap s <plug>(SubversiveSubstitute)
+nmap ss <plug>(SubversiveSubstituteLine)
+nmap S <plug>(SubversiveSubstituteToEndOfLine)
+
+nmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+xmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
+nmap <leader>crr <plug>(SubversiveSubstituteWordRangeConfirm)
+
+xmap s <plug>(SubversiveSubstitute)
+xmap p <plug>(SubversiveSubstitute)
+xmap P <plug>(SubversiveSubstitute)
+
+" ********
+" kana/vim-textobj-user
+" ********
+" ie = inner entire buffer
+onoremap ie :exec "normal! ggVG"<cr>
+
+" iv = current viewable text in the buffer
+onoremap iv :exec "normal! HVL"<cr>
+
+" ********
+" lfilho/cosco.vim
+" ********
+autocmd FileType javascript,css,jsx nmap <silent> <Leader>\ <Plug>(cosco-commaOrSemiColon)
+autocmd FileType javascript,css,jsx imap <silent> <Leader>\ <c-o><Plug>(cosco-commaOrSemiColon)
+let g:cosco_filetype_whitelist = ['css', 'javascript', 'jsx']
+
+" ********
+" vimux
+" ********
+" Prompt for a command to run
+nnoremap <leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+nnoremap <leader>vl :VimuxRunLastCommand<CR>
+
+" ********
+" kana/vim-arpeggio
+" ********
+call arpeggio#load()
+Arpeggio inoremap jk <Esc>
+"Arpeggio nmap vp :VimuxPromptCommand<CR>
+Arpeggio nnoremap vl :VimuxRunLastCommand<CR>
+Arpeggio nnoremap gh :update<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - development
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -881,60 +968,8 @@ nnoremap <leader>v f"l
 imap <C-c> <CR><Esc>O
 " quick exit no save
 nnoremap <C-c>`` :qa!<cr>
+
 " alt command mode
 nnoremap <C-c> :
-
-
-
-
-
-nnoremap m d
-xnoremap m d
-
-nnoremap mm dd
-nnoremap M D
-
-" alt mapping for 'add mark' instead of m
-nnoremap gm m
-
-nmap <c-n> <plug>(YoinkPostPasteSwapBack)
-"nmap <c-p> <plug>(YoinkPostPasteSwapForward)
-nmap <expr> <c-p> yoink#isSwapping() ? '<plug>(YoinkPostPasteSwapForward)' : ':FZF'
-
-nmap p <plug>(YoinkPaste_p)
-nmap P <plug>(YoinkPaste_P)
-
-nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
-
-nmap y <plug>(YoinkYankPreserveCursorPosition)
-xmap y <plug>(YoinkYankPreserveCursorPosition)
-
-
-let g:yoinkIncludeDeleteOperations = 1
-let g:yoinkSyncNumberedRegisters = 1
-
 nnoremap <c-o> :Files<CR>
 
-" s for substitute
-nmap s <plug>(SubversiveSubstitute)
-nmap ss <plug>(SubversiveSubstituteLine)
-nmap S <plug>(SubversiveSubstituteToEndOfLine)
-
-nmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
-xmap <leader>cr <plug>(SubversiveSubstituteRangeConfirm)
-nmap <leader>crr <plug>(SubversiveSubstituteWordRangeConfirm)
-
-" ie = inner entire buffer
-onoremap ie :exec "normal! ggVG"<cr>
-
-" iv = current viewable text in the buffer
-onoremap iv :exec "normal! HVL"<cr>
-
-xmap s <plug>(SubversiveSubstitute)
-xmap p <plug>(SubversiveSubstitute)
-xmap P <plug>(SubversiveSubstitute)
-
-
-autocmd FileType javascript,css,jsx nmap <silent> <Leader>\ <Plug>(cosco-commaOrSemiColon)
-autocmd FileType javascript,css,jsx imap <silent> <Leader>\ <c-o><Plug>(cosco-commaOrSemiColon)
-let g:cosco_filetype_whitelist = ['css', 'javascript', 'jsx']
