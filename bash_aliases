@@ -226,6 +226,7 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
+[ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
@@ -237,6 +238,7 @@ bind '";;":"\e"'
 bind '"\e."':yank-last-arg
 bind -m vi-insert "\C-l":clear-screen
 bind -x '"\C-b":"clear"'
+[ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 #}}}
 
@@ -586,7 +588,7 @@ if [ -x "$(command -v fasd )" ]; then
 
 fi
 
-[ -s "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
+[ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 #alias j=zd
 alias vim="HSDVIM=dev vim"

@@ -370,20 +370,20 @@ nnoremap <leader><tab> %
 vnoremap <leader><tab> %
 
 " disable arrow keys
-nnoremap <up> <nop>
-nnoremap <down> <nop>
-nnoremap <left> <nop>
-nnoremap <right> <nop>
-inoremap <up> <nop>
-inoremap <down> <nop>
-inoremap <left> <nop>
-inoremap <right> <nop>
+" nnoremap <up> <nop>
+" nnoremap <down> <nop>
+" nnoremap <left> <nop>
+" nnoremap <right> <nop>
+" inoremap <up> <nop>
+" inoremap <down> <nop>
+" inoremap <left> <nop>
+" inoremap <right> <nop>
 
 " Up Down Left Right resize splits
-nnoremap <up> <c-w>+
-nnoremap <down> <c-w>-
-nnoremap <left> <c-w><
-nnoremap <right> <c-w>>
+" nnoremap <up> <c-w>+
+" nnoremap <down> <c-w>-
+" nnoremap <left> <c-w><
+" nnoremap <right> <c-w>>
 
 """"""""""""""""""""""""""""""
 " => Status line
