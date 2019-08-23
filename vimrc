@@ -372,10 +372,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 nnoremap j gj
 nnoremap k gk
 
-" Tab: Go to matching element
-nnoremap <leader><tab> %
-vnoremap <leader><tab> %
-
 " disable arrow keys
 " nnoremap <up> <nop>
 " nnoremap <down> <nop>
@@ -467,15 +463,8 @@ nnoremap <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>4 mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Delete without adding to register
-nnoremap <silent> <leader>d "_d
-xnoremap <silent> <leader>d "_d
-
 " markdown set conceal level
 noremap <Leader>m :set conceallevel=2
-
-" Toggle paste mode on and off
-nnoremap <leader>pp :setlocal paste!<cr>
 
 " disable mode lines (security measure)
 set nomodeline
@@ -892,12 +881,13 @@ nmap <Leader>fb <Plug>(foldround-backward)
 " **********
 " svermeulen/vim-cutlass
 " ********
-nnoremap x ygvd
-xnoremap x ygvd
+nnoremap x d
+xnoremap x d
 
 nnoremap xx dd
-nnoremap X ygvD
+nnoremap X D
 vnoremap X ygvD
+vnoremap xx ygvD
 
 " ********
 " svermeulen/vim-yoink
