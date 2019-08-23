@@ -265,7 +265,14 @@ set ffs=unix,dos,mac
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
 set nobackup
 set nowritebackup
-set noswapfile
+"set noswapfile
+
+set backupdir=~/.vim/.tmp/backup//
+set directory=~/.vim/.tmp/swap//
+set undodir=~/.vim/.tmp/undo//
+
+set swapfile
+set undofile   
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -611,6 +618,16 @@ endfunction
 
 nnoremap <silent> <Leader>ml :call AppendModeline()<CR>
 
+" reload in vim dev mode
+if !exists('*Makehsd')
+    function! Makehsd()
+        let $HSDVIM="dev"
+        source $MYVIMRC
+    endfun
+endif
+
+nnoremap <silent> <leader>5 :call Makehsd()<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Filetypes and Completions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -693,7 +710,7 @@ nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Yank smart, to be consistent with C and D
-nnoremap Y y$
+" nnoremap Y y$
 
 " use these to escape in insert more
 " imap jk <Esc>
@@ -708,7 +725,7 @@ nnoremap U :redo<cr>
 
 " fast exit
 " nmap qq :qa<CR>
-nnoremap <silent> <Leader>q :qa<CR>
+"nnoremap <silent> <Leader>q :qa<CR>
 
 " Fix annoying surround.vim message
 vmap s S
@@ -879,7 +896,8 @@ nnoremap x d
 xnoremap x d
 
 nnoremap xx dd
-nnoremap X D
+nnoremap X ygvD
+vnoremap X ygvD
 
 " ********
 " svermeulen/vim-yoink
