@@ -72,19 +72,8 @@ nnoremap <leader>1 :TagbarToggle<CR>
 nnoremap <leader>i :IndentLinesToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => WORKING
+" => Extra
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" html edits - move to after tag > INSERT
-nnoremap <leader>f f>li
-" html edits - move to inside quotes
-nnoremap <leader>v f"l
-" js edits - curly brackets open and position
-imap <C-c> <CR><Esc>O
-" quick exit no save
-nnoremap <C-c>`` :qa!<cr>
-" alt command mode
-nnoremap <C-c> :
 
 let g:tagbar_type_javascript = {
       \ 'ctagstype': 'javascript',
