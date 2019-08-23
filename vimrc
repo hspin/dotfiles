@@ -892,8 +892,8 @@ nmap <Leader>fb <Plug>(foldround-backward)
 " **********
 " svermeulen/vim-cutlass
 " ********
-nnoremap x d
-xnoremap x d
+nnoremap x ygvd
+xnoremap x ygvd
 
 nnoremap xx dd
 nnoremap X ygvD
