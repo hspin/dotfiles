@@ -438,7 +438,7 @@ function qstart() {
     git clone --quiet --depth 1 git@github.com:hspin/tpl_webapp.git $REALDIR
     cd $REALDIR
     rm -rf .git
-    rm -f .gitignore
+    # rm -f .gitignore
     cd ..
     echo "done -"
 }
