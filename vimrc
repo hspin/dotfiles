@@ -80,7 +80,7 @@ Plug 'kana/vim-textobj-function'
 Plug 'jasonlong/vim-textobj-css'
 Plug 'kana/vim-textobj-line'
 Plug 'haya14busa/vim-textobj-function-syntax'
-
+Plug 'zirrostig/vim-schlepp'
 
 if $HSDVIM == 'dev'
   " load DEVELOPMENT vimrc
@@ -952,6 +952,22 @@ nnoremap <leader>vl :VimuxRunLastCommand<CR>
 call arpeggio#load()
 Arpeggio nnoremap zo :update<CR>
 Arpeggio nnoremap ,. :qa<CR>
+Arpeggio nnoremap cl x
+Arpeggio nnoremap cm :Commentary<CR>
+Arpeggio inoremap jk <Esc>
+Arpeggio inoremap fun function 
+Arpeggio inoremap mox module.exports
+Arpeggio inoremap con console.log()<Esc>i
+Arpeggio inoremap <Space>i if<Space><ESC>:call UltiSnips#ExpandSnippet()<CR>
+
+" ********
+" zirrostig/vim-schlepp
+" ********
+vmap <unique> <up>    <Plug>SchleppUp
+vmap <unique> <down>  <Plug>SchleppDown
+vmap <unique> <left>  <Plug>SchleppLeft
+vmap <unique> <right> <Plug>SchleppRight
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - development
