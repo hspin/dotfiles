@@ -950,8 +950,8 @@ nnoremap <leader>vl :VimuxRunLastCommand<CR>
 " kana/vim-arpeggio
 " ********
 call arpeggio#load()
-" Arpeggio inoremap jk :update<CR>
-Arpeggio nnoremap io :qa<CR>
+Arpeggio nnoremap zo :update<CR>
+Arpeggio nnoremap ,. :qa<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - development
