@@ -1,6 +1,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Version: 
-"       7.0 - 01/05/18
+"       18.01 - 08/29/2019
 "
 " Sections:
 "    -> Initialize
@@ -82,12 +82,12 @@ Plug 'kana/vim-textobj-line'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'zirrostig/vim-schlepp'
 
-"startxyz
+"startabc
 if $HSDVIM == 'dev'
   " load DEVELOPMENT vimrc
   source $HOME/.dotfiles/vim-dev
 endif
-"endxyz
+"endabc
 
 call plug#end()
 
@@ -969,11 +969,6 @@ vmap <unique> <up>    <Plug>SchleppUp
 vmap <unique> <down>  <Plug>SchleppDown
 vmap <unique> <left>  <Plug>SchleppLeft
 vmap <unique> <right> <Plug>SchleppRight
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Plugins - development
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "startxyz
 if $HSDVIM == 'dev'
