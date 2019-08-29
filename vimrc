@@ -82,10 +82,12 @@ Plug 'kana/vim-textobj-line'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'zirrostig/vim-schlepp'
 
+"startxyz
 if $HSDVIM == 'dev'
   " load DEVELOPMENT vimrc
   source $HOME/.dotfiles/vim-dev
 endif
+"endxyz
 
 call plug#end()
 
@@ -973,10 +975,12 @@ vmap <unique> <right> <Plug>SchleppRight
 " => Plugins - development
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+"startxyz
 if $HSDVIM == 'dev'
   " load DEVELOPMENT vimrc
   source $HOME/.dotfiles/vim-dev-vimrc
 endif
+"endxyz
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => WORKING
