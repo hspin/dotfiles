@@ -271,10 +271,10 @@ set nowritebackup
 
 set backupdir=~/.vim/.tmp/backup//
 set directory=~/.vim/.tmp/swap//
-set undodir=~/.vim/.tmp/undo//
+" set undodir=~/.vim/.tmp/undo//
 
 set swapfile
-set undofile   
+" set undofile   
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -929,9 +929,6 @@ xmap P <plug>(SubversiveSubstitute)
 " ********
 " ie = inner entire buffer
 onoremap ie :exec "normal! ggVG"<cr>
-
-" iv = current viewable text in the buffer
-onoremap iv :exec "normal! HVL"<cr>
 
 " ********
 " lfilho/cosco.vim
