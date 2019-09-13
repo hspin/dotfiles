@@ -67,7 +67,7 @@ autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.gra
 let g:qs_max_chars=250
 let g:qs_lazy_highlight = 1
 
-nnoremap <leader>q <plug>(QuickScopeToggle)
+nmap <leader>q <plug>(QuickScopeToggle)
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Functional keys

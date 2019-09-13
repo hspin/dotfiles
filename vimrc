@@ -948,8 +948,15 @@ nnoremap <leader>vl :VimuxRunLastCommand<CR>
 " ********
 " kana/vim-arpeggio
 " ********
+
+function! FlashSave()
+    update
+    sleep 700m
+    echo ""
+endfunction
+
 call arpeggio#load()
-Arpeggio nnoremap zo :update<CR>
+Arpeggio nnoremap zo :call FlashSave()<CR><CR>
 Arpeggio nnoremap ,. :qa<CR>
 Arpeggio nnoremap cl x
 Arpeggio nnoremap cm :Commentary<CR>
@@ -990,4 +997,13 @@ nnoremap <C-c>`` :qa!<cr>
 " alt command mode
 nnoremap <C-c> :
 nnoremap <c-o> :Files<CR>
+
+function! Flash()
+    set cursorline cursorcolumn
+    redraw
+    sleep 100m
+    set nocursorline nocursorcolumn
+endfunction
+
+nnoremap <leader>fl :call Flash()<CR>
 
