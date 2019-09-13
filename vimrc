@@ -945,6 +945,24 @@ nnoremap <leader>vp :VimuxPromptCommand<CR>
 " Run last command executed by VimuxRunCommand
 nnoremap <leader>vl :VimuxRunLastCommand<CR>
 
+" node repl
+function! VimuxSlime()
+  if !exists("g:VimuxRunnerIndex")
+      call VimuxOpenRunner()
+      call VimuxSendText("node")
+      call VimuxSendKeys("Enter")
+      sleep 200m
+  endif
+  call VimuxSendText(@v)
+  call VimuxSendKeys("Enter")
+  exec setreg('v', [])
+  normal! gvV
+endfunction
+
+" If text is selected, save it in the v buffer and send that buffer it to tmux
+vnoremap <leader>vs "vy :call VimuxSlime()<CR>
+nnoremap <leader>vs vip
+
 " ********
 " kana/vim-arpeggio
 " ********
@@ -1006,4 +1024,3 @@ function! Flash()
 endfunction
 
 nnoremap <leader>fl :call Flash()<CR>
-
