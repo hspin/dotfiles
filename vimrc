@@ -244,9 +244,9 @@ if has("gui_running")
     set guioptions-=e
     set t_Co=256
     set guitablabel=%M\ %t
-	if has("gui_gtk2")
+	if has("gui")
 		"set guifont=Inconsolata\ 12
-		set guifont=Source\ Code\ Pro\ 16
+		set guifont=Hack\ 14
 	elseif has("gui_macvim")
 		set guifont=Menlo\ Regular:h14
 	elseif has("gui_win32")
