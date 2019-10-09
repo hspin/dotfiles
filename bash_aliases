@@ -434,10 +434,14 @@ xygo() {
 
 # get a project scaffold quick
 function qstart() {
-    REALDIR="template-ready"
-    git clone --quiet --depth 1 git@github.com:hspin/tpl_webapp.git $REALDIR
+    read -p "Enter PROJECT dir name: " ref
+
+    newname="${ref// /-}"
+    REALDIR=$( echo -n "${newname}" | sed 's/^ *//;s/ *$//' )
+
+    git clone --quiet --depth 1 https://github.com/hspin/base_starter.git $REALDIR
     cd $REALDIR
-    rm -rf .git
+    /bin/rm -rf .git
     # rm -f .gitignore
     cd ..
     echo "done -"
