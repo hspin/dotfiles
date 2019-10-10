@@ -701,7 +701,7 @@ nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Yank smart, to be consistent with C and D
-" nnoremap Y y$
+nnoremap Y y$
 
 " use these to escape in insert more
 " imap jk <Esc>
