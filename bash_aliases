@@ -487,6 +487,9 @@ fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
+# fzf look
+
+export FZF_DEFAULT_OPTS='--height 50% --border --inline-info --preview="head -$LINES {}" --preview-window up --margin 0,1 --layout reverse'
 
 # new for fasd
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
