@@ -5,6 +5,11 @@
 #   /bin/bash "${CAPS}"
 # fi
 
+CAPS=/home/ubuntu/lscripts/.02-super-caps.sh
+if [ -f "${CAPS}" ]; then
+  /bin/bash "${CAPS}"
+fi
+
 if [ "$BASH" ]; then
   if [ -f ~/.bashrc ]; then
     . ~/.bashrc
