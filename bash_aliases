@@ -218,6 +218,16 @@ fzf-linuxlib-widget-enter() {
     fi
 }
 
+fzf-edit-widget-slim() {
+  NAME=$(fzf --height 50% --border --inline-info --preview="head -$LINES {}" --preview-window up --margin 0,1 --layout reverse)
+  if [ -z ${NAME} ]; then echo "no file selected"; else /usr/bin/vi "${NAME}"; fi
+}
+
+fzf-edit-widget() {
+  NAME=$(fzf --height 50% --border --inline-info --preview="head -$LINES {}" --preview-window up --margin 0,1 --layout reverse)
+  if [ -z ${NAME} ]; then echo "no file selected"; else HSDVIM=dev vim "${NAME}"; fi
+}
+
 # -------------------------------------------------------------------
 # bash mode and bind keys
 # -------------------------------------------------------------------
@@ -226,11 +236,15 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
+bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-g":"fzf-edit-widget"'
 [ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
+bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-g":"fzf-edit-widget"'
 
 # Alt-e (or Esc e) will toggle between modes.
 bind '"\ee": emacs-editing-mode'
@@ -487,6 +501,10 @@ fi
 
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator.bash ]] && source $HOME/.tmuxinator/scripts/tmuxinator.bash
 
+# fzf look
+
+# export FZF_DEFAULT_OPTS='--height 50% --border --inline-info --preview="head -$LINES {}" --preview-window up --margin 0,1 --layout reverse'
+export FZF_DEFAULT_OPTS='--height 50% --border --inline-info --margin 0,1 --layout reverse'
 
 # new for fasd
 export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
@@ -598,6 +616,7 @@ fi
 alias vim="HSDVIM=dev vim"
 alias vi="try_na_editor"
 alias na="/usr/bin/vi"
+alias scpp="rsync -az --info=progress2 --no-i-r"
 
 # View recent f files
 # unalias v 2>/dev/null

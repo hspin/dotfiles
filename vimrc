@@ -686,6 +686,7 @@ nnoremap <silent> <Leader>x :Bdelete<CR>
 nnoremap <bar> :Buffers<CR>
 nnoremap \ :Lines<CR>
 nnoremap <leader>t :Tags<CR>
+nnoremap <leader>` :Marks<CR>
 nnoremap <leader>z :cclose<CR>
 nnoremap <leader>j mO :Ack! "\b<cword>\b" <CR>
 
@@ -701,7 +702,7 @@ nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Yank smart, to be consistent with C and D
-" nnoremap Y y$
+nnoremap Y y$
 
 " use these to escape in insert more
 " imap jk <Esc>
@@ -883,13 +884,19 @@ nmap <Leader>fb <Plug>(foldround-backward)
 " **********
 " svermeulen/vim-cutlass
 " ********
-nnoremap x d
-xnoremap x d
+" nnoremap x d
+" xnoremap x d
 
-nnoremap xx dd
-nnoremap X D
-vnoremap X ygvD
-vnoremap xx ygvD
+" nnoremap xx dd
+" nnoremap X D
+"vnoremap X ygvD
+"vnoremap xx ygvD
+
+nnoremap m d
+xnoremap m d
+
+nnoremap mm dd
+nnoremap M D
 
 " ********
 " svermeulen/vim-yoink
@@ -905,8 +912,8 @@ nmap <c-=> <plug>(YoinkPostPasteToggleFormat)
 nmap y <plug>(YoinkYankPreserveCursorPosition)
 xmap y <plug>(YoinkYankPreserveCursorPosition)
 
+"let g:yoinkSyncNumberedRegisters = 1
 let g:yoinkIncludeDeleteOperations = 1
-let g:yoinkSyncNumberedRegisters = 1
 
 " ********
 " svermeulen/vim-subversive
@@ -929,6 +936,9 @@ xmap P <plug>(SubversiveSubstitute)
 " ********
 " ie = inner entire buffer
 onoremap ie :exec "normal! ggVG"<cr>
+
+" iv = current viewable text in the buffer
+onoremap iv :exec "normal! HVL"<cr>
 
 " ********
 " lfilho/cosco.vim
@@ -976,11 +986,9 @@ endfunction
 call arpeggio#load()
 Arpeggio nnoremap zo :call FlashSave()<CR><CR>
 Arpeggio nnoremap ,. :qa<CR>
-Arpeggio nnoremap cl x
-Arpeggio nnoremap cm :Commentary<CR>
+Arpeggio nnoremap [] :Commentary<CR>
 Arpeggio inoremap jk <Esc>
 Arpeggio inoremap fun function 
-Arpeggio inoremap mox module.exports
 Arpeggio inoremap con console.log()<Esc>i
 Arpeggio inoremap <Space>i if<Space><ESC>:call UltiSnips#ExpandSnippet()<CR>
 
