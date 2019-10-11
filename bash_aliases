@@ -617,6 +617,7 @@ alias vim="HSDVIM=dev vim"
 alias vi="try_na_editor"
 alias na="/usr/bin/vi"
 alias scpp="rsync -az --info=progress2 --no-i-r"
+alias gg="git_add_and_commit"
 
 # View recent f files
 # unalias v 2>/dev/null
