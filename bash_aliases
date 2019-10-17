@@ -236,14 +236,14 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
-bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-f":"fzf-edit-widget-slim"'
 bind -x '"\C-g":"fzf-edit-widget"'
 [ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
-bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-f":"fzf-edit-widget-slim"'
 bind -x '"\C-g":"fzf-edit-widget"'
 
 # Alt-e (or Esc e) will toggle between modes.
@@ -617,6 +617,7 @@ alias vim="HSDVIM=dev vim"
 alias vi="try_na_editor"
 alias na="/usr/bin/vi"
 alias scpp="rsync -az --info=progress2 --no-i-r"
+alias gg="git_add_and_commit"
 
 # View recent f files
 # unalias v 2>/dev/null
