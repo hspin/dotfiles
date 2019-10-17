@@ -236,14 +236,14 @@ set -o emacs
 bind '"\ee": vi-editing-mode'
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
-bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-f":"fzf-edit-widget-slim"'
 bind -x '"\C-g":"fzf-edit-widget"'
 [ -f "$HOME/.scm_breeze/scm_breeze.sh" ] && source "$HOME/.scm_breeze/scm_breeze.sh"
 
 set -o vi
 bind -x '"\C-n":"fzf-linuxlib-widget-enter"'
 bind -x '"\C-o":"fzf-linuxlib-widget"'
-bind -x '"\C-k":"fzf-edit-widget-slim"'
+bind -x '"\C-f":"fzf-edit-widget-slim"'
 bind -x '"\C-g":"fzf-edit-widget"'
 
 # Alt-e (or Esc e) will toggle between modes.
