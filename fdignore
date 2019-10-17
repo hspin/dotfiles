@@ -6,6 +6,7 @@ bower_components
 node_modules
 plugged
 Trash
+dotbot
 vendor
 dist
 build
