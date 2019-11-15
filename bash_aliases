@@ -619,6 +619,28 @@ alias na="/usr/bin/vi"
 alias scpp="rsync -az --info=progress2 --no-i-r"
 alias gg="git_add_and_commit"
 
+mkvenv() {
+    if [ $# -eq 0 ]
+    then
+        echo "no dir name supplied"
+    else
+        cd ~/var/virtualenvs
+        mkdir -p "$@"
+        cd ~/var/virtualenvs/"$1"
+    fi
+}
+
+ppr() {
+    if [ ! -n "$VIRTUAL_ENV" ]; then
+        if [ -f "Pipfile" ] ; then
+            pipenv  run "$@"
+        else
+            echo "No pipfile"
+            cd ~/var/virtualenvs
+        fi
+    fi
+}
+
 # View recent f files
 # unalias v 2>/dev/null
 # v() {
