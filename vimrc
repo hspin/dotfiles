@@ -677,12 +677,13 @@ augroup end
 " => LeaderMappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-nnoremap <leader>n :b#<CR>
+nnoremap <leader>k :b#<CR>
 nnoremap <leader>c :close<CR>
-nnoremap <leader>o :BufExplorer<CR>
+nnoremap <leader>n :BufExplorer<CR>
 nnoremap <silent> <Leader>x :Bdelete<CR>
 
 "nnoremap <c-p> :Files<CR>
+nnoremap <leader>o :Files<CR>
 nnoremap <bar> :Buffers<CR>
 nnoremap \ :Lines<CR>
 nnoremap <leader>t :Tags<CR>
@@ -1019,10 +1020,6 @@ imap <C-c> <CR><Esc>O
 " quick exit no save
 nnoremap <C-c>`` :qa!<cr>
 
-" alt command mode
-nnoremap <C-c> :
-nnoremap <c-o> :Files<CR>
-
 function! Flash()
     set cursorline cursorcolumn
     redraw
@@ -1035,3 +1032,7 @@ nnoremap <silent> <leader>y :Yanks<cr>
 " nnoremap <leader>g :
 nnoremap <leader>b :q<cr>
 nnoremap <C-@> :
+nnoremap <silent> <leader>m1 :call signature#marker#Toggle("!")<cr>
+nnoremap <silent> <leader>m2 :call signature#marker#Toggle("@")<cr>
+nnoremap <silent> <leader>m3 :call signature#marker#Toggle("#")<cr>
+nnoremap <silent> <leader>m4 :call signature#marker#Toggle("$")<cr>
