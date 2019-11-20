@@ -732,11 +732,12 @@ vnoremap <silent> y y`]
 vnoremap <silent> p p`]
 nnoremap <silent> p p`]
 
+" my mappings more 
+nnoremap <BS> :
+
 " save with enter
 " nnoremap <Enter> :w<CR>
 nnoremap <expr> <cr> &modified ? ":call FlashSave()<cr><cr>" : "<cr>"
-
-nnoremap <leader><cr> :
 
 " fast whole file alignment
 nnoremap <leader>= gg=G``  
@@ -1031,3 +1032,6 @@ endfunction
 
 nnoremap <leader>fl :call Flash()<CR>
 nnoremap <silent> <leader>y :Yanks<cr>
+" nnoremap <leader>g :
+nnoremap <leader>b :q<cr>
+nnoremap <C-@> :
