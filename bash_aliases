@@ -506,18 +506,24 @@ fi
 # export FZF_DEFAULT_OPTS='--height 50% --border --inline-info --preview="head -$LINES {}" --preview-window up --margin 0,1 --layout reverse'
 export FZF_DEFAULT_OPTS='--height 50% --border --inline-info --margin 0,1 --layout reverse'
 
-# new for fasd
-export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+# fzf commands main
+# export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} --type f"
+export FZF_DEFAULT_COMMAND="fd --hidden --type f"
+# fzf commands ctrl-t
+export FZF_CTRL_T_COMMAND="fd --hidden --type f"
+# fzf commands alt-c
+export FZF_ALT_C_COMMAND="fd --hidden --type d"
 
 # Use fd (https://github.com/sharkdp/fd) instead of the default find
 _fzf_compgen_path() {
-  fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
+  # fd --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
+  fd --hidden . "$1"
 }
 
 # Use fd to generate the list for directory completion
 _fzf_compgen_dir() {
-  fd --type d --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
+  fd --type d --hidden . "$1"
+  # fd --type d --hidden --follow --exclude={.DS_Store,.cache,.stfolder,.git,bower_components,node_modules,plugged,Trash,vendor,dist,build} . "$1"
   #fd --type d --hidden --follow --exclude ".git" --exclude "node_modules" --exclude "bower_components" . "$1"
 }
 
@@ -590,21 +596,21 @@ if [ -x "$(command -v fasd )" ]; then
             || _action_from_fasd -d "cd" 
     }
 
-    jj() { 
-        _jj cd "$(_list_folders)" "$@" 
-    }
+    # jj() { 
+    #     _jj cd "$(_list_folders)" "$@" 
+    # }
 
-    jjf() { 
-        _jj _cd_file "$(_list_files)" "$@" 
-    }
+    # jjf() { 
+    #     _jj _cd_file "$(_list_files)" "$@" 
+    # }
 
-    jv() {
+    va() {
         [ $# -gt 0 ] && \
             fasd -f -e vim "$@" \
             || _action_from_fasd -f vim 
     }
 
-    jjv() { 
+    vh() { 
         _jj vim "$(_list_files)" "$@" 
     }
 
