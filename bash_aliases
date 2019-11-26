@@ -188,7 +188,7 @@ alias tks='tmux kill-session -t'
 alias tnew='tmux new-session -A -s '
 
 # misc
-alias rg='ranger'
+alias rr='ranger'
 alias v='f -e vim'
 alias vv='f -i -e vim'
 alias myip='my_ip'
