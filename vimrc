@@ -51,7 +51,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'milkypostman/vim-togglelist'
 Plug 'kshenoy/vim-signature'
 Plug 'Raimondi/delimitMate'
-" Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'rhysd/clever-f.vim'
@@ -81,6 +80,7 @@ Plug 'jasonlong/vim-textobj-css'
 Plug 'kana/vim-textobj-line'
 Plug 'haya14busa/vim-textobj-function-syntax'
 Plug 'zirrostig/vim-schlepp'
+Plug 'mhinz/vim-grepper'
 
 "startabc
 if $HSDVIM == 'dev'
@@ -1036,3 +1036,32 @@ nnoremap <silent> <leader>m1 :call signature#marker#Toggle("!")<cr>
 nnoremap <silent> <leader>m2 :call signature#marker#Toggle("@")<cr>
 nnoremap <silent> <leader>m3 :call signature#marker#Toggle("#")<cr>
 nnoremap <silent> <leader>m4 :call signature#marker#Toggle("$")<cr>
+
+" .............................................................................
+" mhinz/vim-grepper
+" .............................................................................
+
+let g:grepper={}
+let g:grepper.tools=["rg"]
+
+" xmap gr <plug>(GrepperOperator)
+
+" After searching for text, press this mapping to do a project wide find and
+" replace. It's similar to <leader>r except this one applies to all matches
+" across all files instead of just the current file.
+nnoremap <Leader>R
+  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" use alt-a to select all in quick window
+nnoremap <Leader>RR
+  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+
