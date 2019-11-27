@@ -434,8 +434,11 @@ nnoremap <leader>ws :call CleanExtraSpaces()<CR>
 " => Searching vimgrep 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Ctrl-sr: Easier (s)earch and (r)eplace
-nnoremap <leader>r :%s/<c-r><c-w>//g<left><left><left>
+" Easier (s)earch and (r)eplace
+nnoremap <leader>r :%s/<c-r><c-w>//g<left><left>
+" Easier search and replace - visual
+vnoremap <leader>r "hy:%s/<c-r>h//g<left><left>
+
 
 " n: Next, keep search matches in the middle of the window
 nnoremap n nzzzv
@@ -678,17 +681,21 @@ augroup end
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 nnoremap <leader>k :b#<CR>
-nnoremap <leader>c :close<CR>
 nnoremap <leader>n :BufExplorer<CR>
+
 nnoremap <silent> <Leader>x :Bdelete<CR>
 
-"nnoremap <c-p> :Files<CR>
 nnoremap <leader>o :Files<CR>
 nnoremap <bar> :Buffers<CR>
-nnoremap \ :Lines<CR>
+
+" nnoremap \ :Lines<CR>
 nnoremap <leader>t :Tags<CR>
 nnoremap <leader>` :Marks<CR>
+
 nnoremap <leader>z :cclose<CR>
+nnoremap <leader>c :close<CR>
+
+" search word in project
 nnoremap <leader>j mO :Ack! "\b<cword>\b" <CR>
 
 " tpope/vim-projectionist
@@ -697,6 +704,21 @@ nnoremap <Leader>aa :A<CR>
 nnoremap <Leader>av :AV<CR>
 
 nnoremap <leader>e :edit <c-r>=expand("%:p:h")<cr>/
+
+nnoremap <silent> <Leader>\b :Buffers<CR>
+nnoremap <silent> <Leader>\f :Files<CR>
+nnoremap <silent> <Leader>\l :Lines<CR>
+
+nnoremap <silent> <Leader>\F :GFiles<CR>
+nnoremap <silent> <Leader>\g :GFiles?<CR>
+
+nnoremap <silent> <Leader>\h :History:<CR>
+nnoremap <silent> <Leader>\H :Helptags<CR>
+
+nnoremap <silent> <Leader>\m :Maps<CR>
+nnoremap <Leader>\r :Rg 
+nnoremap <silent> <Leader>\/ :History/<CR>
+nnoremap <silent> <Leader>\: :Commands<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Useful
@@ -820,12 +842,6 @@ vmap <C-c> "+y
 vmap <C-x> "+x
 vmap <C-v> c<ESC>"+p
 
-" Ctrl-r: Easier search and replace
-vnoremap <c-r> "hy:%s/<c-r>h//g<left><left><left>
-
-" Ctrl-s: Easier substitue
-vnoremap <c-s> :s/\%V//g<left><left><left>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Plugins - normal
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -947,6 +963,33 @@ autocmd FileType javascript,css,jsx nmap <silent> <Leader>\ <Plug>(cosco-commaOr
 autocmd FileType javascript,css,jsx imap <silent> <Leader>\ <c-o><Plug>(cosco-commaOrSemiColon)
 let g:cosco_filetype_whitelist = ['css', 'javascript', 'jsx']
 
+" *****************
+" mhinz/vim-grepper
+" *****************
+let g:grepper={}
+let g:grepper.tools=["rg"]
+
+" xmap gr <plug>(GrepperOperator)
+
+" After searching for text, press this mapping to do a project wide find and
+" replace. It's similar to <leader>r except this one applies to all matches
+" across all files instead of just the current file.
+nnoremap <Leader>R
+  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+  \ :Grepper -cword -noprompt<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" use alt-a to select all in quick window
+nnoremap <Leader>RR
+  \ :let @s='\<'.expand('<cword>').'\>'<CR>
+  \ :cfdo %s/<C-r>s//g \| update
+  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+
+" Allow passing optional flags into the Rg command.
+"   Example: :Rg myterm -g '*.md'
+command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
+
 " ********
 " vimux
 " ********
@@ -1036,32 +1079,3 @@ nnoremap <silent> <leader>m1 :call signature#marker#Toggle("!")<cr>
 nnoremap <silent> <leader>m2 :call signature#marker#Toggle("@")<cr>
 nnoremap <silent> <leader>m3 :call signature#marker#Toggle("#")<cr>
 nnoremap <silent> <leader>m4 :call signature#marker#Toggle("$")<cr>
-
-" .............................................................................
-" mhinz/vim-grepper
-" .............................................................................
-
-let g:grepper={}
-let g:grepper.tools=["rg"]
-
-" xmap gr <plug>(GrepperOperator)
-
-" After searching for text, press this mapping to do a project wide find and
-" replace. It's similar to <leader>r except this one applies to all matches
-" across all files instead of just the current file.
-nnoremap <Leader>R
-  \ :let @s='\<'.expand('<cword>').'\>'<CR>
-  \ :Grepper -cword -noprompt<CR>
-  \ :cfdo %s/<C-r>s//g \| update
-  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-" use alt-a to select all in quick window
-nnoremap <Leader>RR
-  \ :let @s='\<'.expand('<cword>').'\>'<CR>
-  \ :cfdo %s/<C-r>s//g \| update
-  \<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
-
-" Allow passing optional flags into the Rg command.
-"   Example: :Rg myterm -g '*.md'
-command! -bang -nargs=* Rg call fzf#vim#grep("rg --column --line-number --no-heading --color=always --smart-case " . <q-args>, 1, <bang>0)
-
