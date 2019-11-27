@@ -620,8 +620,7 @@ fi
 
 #alias j=zd
 alias vim="HSDVIM=dev vim"
-alias vi="try_na_editor"
-alias na="/usr/bin/vi"
+alias vi="/usr/bin/vim"
 alias scpp="rsync -az --info=progress2 --no-i-r"
 alias gg="git_add_and_commit"
 
