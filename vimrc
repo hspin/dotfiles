@@ -1079,3 +1079,4 @@ nnoremap <silent> <leader>m1 :call signature#marker#Toggle("!")<cr>
 nnoremap <silent> <leader>m2 :call signature#marker#Toggle("@")<cr>
 nnoremap <silent> <leader>m3 :call signature#marker#Toggle("#")<cr>
 nnoremap <silent> <leader>m4 :call signature#marker#Toggle("$")<cr>
+
