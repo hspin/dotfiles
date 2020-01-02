@@ -67,24 +67,6 @@ fi
 
 unset dircolors
 
-# ----------------------------------------------------------------------
-# PATH
-# ----------------------------------------------------------------------
-
-if [ -d "$HOME/.bin" ] ; then
-  PATH="$PATH:$HOME/.bin"
-fi
-
-if [ -d "$HOME/.lbin-local" ] ; then
-  PATH="$PATH:$HOME/.lbin-local"
-fi
-
-if [ -d "$HOME/.local/bin" ] ; then
-  PATH="$PATH:$HOME/.local/bin"
-fi
-
-export PATH
-
 # -------------------------------------------------------------------
 # USER SHELL ALIAS
 # -------------------------------------------------------------------
