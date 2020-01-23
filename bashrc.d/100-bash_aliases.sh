@@ -25,10 +25,7 @@ screen-256color)
     ;;
 esac
 
-<<<<<<< HEAD:bash_aliases
-=======
 # bash git prompt
->>>>>>> f7b09415735f7a9176ff5181124658d0fc08f218:bashrc.d/100-bash_aliases.sh
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     source $HOME/.bash-git-prompt/gitprompt.sh
@@ -404,10 +401,10 @@ cb() {
 # Aliases / functions leveraging the cb() function
 # ------------------------------------------------
 # Copy contents of a file
-function cbf() { cat "$1" | cb; }  
+function cbf() { cat "$1" | cb; }
 
 # Copy current working directory
-alias cbwd="pwd | cb"  
+alias cbwd="pwd | cb"
 
 # the xygo command
 xygo() {
@@ -525,7 +522,7 @@ _fzf_compgen_dir() {
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 if [ -x "$(command -v fasd )" ]; then
-  
+
   eval "$(fasd --init auto posix-alias bash-hook)"
 
 # ===============
@@ -573,7 +570,7 @@ if [ -x "$(command -v fasd )" ]; then
         local lines="$2"
         shift 2
         if [ $# -gt 0 ]; then
-            "$cmd" "$(_best_match "$lines" "$@")" 
+            "$cmd" "$(_best_match "$lines" "$@")"
         else
             local selection=$(echo "$lines" | _fzf) \
                 && [ -n "$selection" ] \
@@ -585,28 +582,28 @@ if [ -x "$(command -v fasd )" ]; then
 # jumping
 # ===============
 
-    j() { 
+    j() {
         [ $# -gt 0 ] && \
             fasd_cd -d "$@" \
-            || _action_from_fasd -d "cd" 
+            || _action_from_fasd -d "cd"
     }
 
-    # jj() { 
-    #     _jj cd "$(_list_folders)" "$@" 
+    # jj() {
+    #     _jj cd "$(_list_folders)" "$@"
     # }
 
-    # jjf() { 
-    #     _jj _cd_file "$(_list_files)" "$@" 
+    # jjf() {
+    #     _jj _cd_file "$(_list_files)" "$@"
     # }
 
     va() {
         [ $# -gt 0 ] && \
             fasd -f -e vim "$@" \
-            || _action_from_fasd -f vim 
+            || _action_from_fasd -f vim
     }
 
-    vh() { 
-        _jj vim "$(_list_files)" "$@" 
+    vh() {
+        _jj vim "$(_list_files)" "$@"
     }
 
 fi
