@@ -25,6 +25,10 @@ screen-256color)
     ;;
 esac
 
+<<<<<<< HEAD:bash_aliases
+=======
+# bash git prompt
+>>>>>>> f7b09415735f7a9176ff5181124658d0fc08f218:bashrc.d/100-bash_aliases.sh
 if [ -f "$HOME/.bash-git-prompt/gitprompt.sh" ]; then
     GIT_PROMPT_ONLY_IN_REPO=1
     source $HOME/.bash-git-prompt/gitprompt.sh
